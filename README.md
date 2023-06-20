@@ -68,3 +68,37 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# For developers
+
+### Папка components
+
+- для компонентов странциц (Header, Footer, Caroosel)
+
+### Папка pages
+
+- для страниц приложения (Main, Auth, Search)
+
+### Папка assets
+
+- для статических файлов (шрифты, картинки)
+
+### Папка store
+
+- для настройки хранилища (Redux)
+
+### Папка styles
+
+- для глобальных стилей (global.css)
+
+### Папка utils
+
+- для вспомогательных функций
+
+### Папка api
+
+- для функций запросов к серверу
+
+### Стили компонентов и страниц создавать вместе с компонентами
+
+### Тесты компонентов и страниц создавать вместе с компонентами
