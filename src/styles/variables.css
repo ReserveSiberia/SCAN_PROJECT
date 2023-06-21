@@ -1,27 +1,27 @@
 @font-face {
   font-family: 'ferry';
-  src: url('../assests/fonts/Ferry-Black.woff') format('woff');
+  src: url('../assets/fonts/Ferry-Black.woff') format('woff');
   font-display: swap;
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: 'inter-regular';
-  src: url('../assests/fonts/Inter-Regular.woff') format('woff');
+  src: url('../assets/fonts/Inter-Regular.woff') format('woff');
   font-display: swap;
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'inter-medium';
-  src: url('../assests/fonts/Inter-Medium.woff') format('woff');
+  src: url('../assets/fonts/Inter-Medium.woff') format('woff');
   font-display: swap;
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'inter-bold';
-  src: url('../assests/fonts/Inter-Bold.woff') format('woff');
+  src: url('../assets/fonts/Inter-Bold.woff') format('woff');
   font-display: swap;
   font-weight: 700;
   font-style: normal;
