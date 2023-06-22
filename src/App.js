@@ -1,9 +1,10 @@
-import './styles/App.css';
+import "./styles/App.css";
+import MainPage from "./pages/MainPage/MainPage.jsx";
 
 function App() {
   return (
     <div className="App">
-      Hello
+      <MainPage />
     </div>
   );
 }
