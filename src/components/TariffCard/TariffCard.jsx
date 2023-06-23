@@ -30,7 +30,7 @@ function TariffCard(props) {
           <img src={props.title[2].icon} alt="TariffImage" />
         </div>
       </div>
-      <div>
+      <div className={styles.currentTarifContainer}>
         {props.isPurchased ? (
           <div className={styles.currentTariff}>Текущий тариф</div>
         ) : (
@@ -50,15 +50,15 @@ function TariffCard(props) {
       </div>
       <div className={styles.detailsTitle}>В тариф входит:</div>
       <div className={styles.details}>
-        <div>
+        <div className={styles.detailsText}>
           <img src={Tick} alt="Галочка" />
           {props.details[0]}
         </div>
-        <div>
+        <div className={styles.detailsText}>
           <img src={Tick} alt="Галочка" />
           {props.details[1]}
         </div>
-        <div>
+        <div className={styles.detailsText}>
           <img src={Tick} alt="Галочка" />
           {props.details[2]}
         </div>

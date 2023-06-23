@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 import MainImage from "../../assets/images/Main-image.svg";
 import AdvertImage from "../../assets/images/Advert-image.svg";
+import AdvertImageMobile from "../../assets/images/Advert-image-mobile.svg";
 import TariffCard from "../TariffCard/TariffCard.jsx";
 import Bulb from "../../assets/images/Bulb-image.svg";
 import Target from "../../assets/images/Target-image.svg";
 import Note from "../../assets/images/Note-image.svg";
 
 function Main() {
+  const [screenSize, setScreenSize] = useState(window.screen.width);
+  console.log(screenSize);
+  useEffect(() => {
+    setScreenSize(window.screen.width);
+  }, [screenSize]);
   return (
     <>
       <div className={styles.main}>
@@ -38,7 +44,19 @@ function Main() {
           </span>
         </div>
         <div className={styles.advertImage}>
-          <img src={AdvertImage} alt="AdvertisingPicture" />
+          {screenSize > 992 ? (
+            <img
+              className={styles.advertImageDesktop}
+              src={AdvertImage}
+              alt="AdvertisingPicture"
+            />
+          ) : (
+            <img
+              className={styles.advertImageMobile}
+              src={AdvertImageMobile}
+              alt="AdvertisingPicture"
+            />
+          )}
         </div>
         <div className={styles.tariffTitle}>наши тарифы</div>
         <div className={styles.tariffs}>
