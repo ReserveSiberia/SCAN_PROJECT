@@ -4,7 +4,7 @@
     background-color: var(--main-color-3);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     overflow-x: hidden;
     font-family: 'inter-regular';
@@ -17,7 +17,7 @@
     background-color: var(--main-color-1);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     overflow-x: hidden;
     font-family: 'inter-regular';
@@ -51,11 +51,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 1px 2% 1px 8%;
+}
+
+.authData {
+    display: flex;
+    align-items: center;
 }
 
 .separator {
-    content: "";
+    content: " ";
     width: 2px;
     height: 26px;
     background-color: var(--main-color-1);
@@ -75,6 +79,17 @@
     margin-left: 20px;
 }
 
+.exit {
+    font-size: 10px;
+    opacity: 0.4;
+    background-color: var(--main-color-3);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 4px 0 5px 12px;
+}
+
+/* Information about Propfile requests limits */
 .requestsInfo {
     display: flex;
     flex-direction: row;
@@ -90,6 +105,21 @@
     background-color: rgba(217, 217, 217, 1);
 }
 
+.requestsInfoHidden {
+    visibility: none;
+}
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    width: 175px;
+    height: 63px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(217, 217, 217, 1);
+    opacity: 0.4;
+}
+
 .info {
     width: 72%;
     text-align: right;
@@ -98,19 +128,6 @@
 
 .data {
     width: 18%;
-}
-
-.exit {
-    font-size: 10px;
-    opacity: 0.4;
-    background-color: var(--main-color-3);
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    padding: 4px 0 5px 12px;
-}
-
-.data {
     font-family: 'inter-bold';
     font-size: 14px;
 }
@@ -123,6 +140,7 @@
     color: rgba(138, 197, 64, 1);
 }
 
+/* User's information */
 .profile {
     display: flex;
     flex-direction: row;
@@ -159,6 +177,10 @@
     display: none;
 }
 
+.burger {
+    display: none;
+}
+
 /* Responsive web design */
 @media (min-width: 320px) and (max-width:992px) {
     .profile {
@@ -169,77 +191,9 @@
         display: none;
     }
 
-    /* Burger menu animation */
-    .menuButton {
-        width: 30px;
-        height: 25px;
-        position: relative;
-        margin: 30px 0 30px 30px;
-        transform: rotate(0deg);
-        transition: .5s ease-in-out;
-        cursor: pointer;
-    }
-
-    .menuButtonOpened {
-        width: 30px;
-        height: 25px;
-        position: relative;
-        margin: 30px 0 30px 30px;
-        transform: rotate(0deg);
-        transition: .5s ease-in-out;
-        cursor: pointer;
-        z-index: 2;
-    }
-
-    .menuButton div {
-        position: absolute;
-        height: 5px;
-        width: 100%;
-        right: 20px;
-        transform: rotate(0deg);
-        transition: .25s ease-in-out;
-        background-color: var(--main-color-1);
-    }
-
-    .menuButtonOpened div {
-        position: absolute;
-        height: 5px;
-        width: 100%;
-        right: 20px;
-        transform: rotate(0deg);
-        transition: .25s ease-in-out;
-        background-color: var(--main-color-3);
-    }
-
-    .menuButton div:nth-child(1) {
-        top: 0px;
-    }
-
-    .menuButton div:nth-child(2) {
-        top: 9px;
-    }
-
-    .menuButton div:nth-child(3) {
-        top: 18px;
-    }
-
-    .menuButtonOpened div:nth-child(1) {
-        top: 12px;
-        transform: rotate(135deg);
-    }
-
-    .menuButtonOpened div:nth-child(2) {
-        display: none;
-        left: -60px;
-    }
-
-    .menuButtonOpened div:nth-child(3) {
-        top: 12px;
-        transform: rotate(-135deg);
-    }
-
     .auth {
-        margin: 1px 20px 1px 0;
+        display: none;
+        /* margin: 1px 20px 1px 0; */
     }
 
     .logo {
@@ -263,10 +217,6 @@
         height: 75px;
     }
 
-    .requestsInfoHidden {
-        display: none;
-    }
-
     .info {
         text-align: left;
         padding-left: 10px;
@@ -276,65 +226,7 @@
         padding-left: 10px;
     }
 
-    .mobileMenuHidden {
-        display: none;
+    .burger {
+        display: block;
     }
-
-    .mobileMenuVisible {
-        position: absolute;
-        right: 0;
-        top: 111px;
-        min-width: 100%;
-        min-height: 100%;
-        display: flex;
-        flex-direction: column;
-        z-index: 1;
-        background-color: var(--main-color-1);
-    }
-
-    .navMobile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10%;
-
-    }
-
-    .mobileAuth {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 15%;
-    }
-
-    .linkMobile {
-        text-decoration: none;
-        font-size: 16px;
-        color: var(--main-color-3);
-        margin: 15px;
-    }
-
-    .mobileRegister {
-        border: none;
-        font-size: 16px;
-        background-color: var(--main-color-1);
-        color: var(--main-color-3);
-        opacity: 0.4;
-        margin: 15px;
-    }
-
-    .mobileEnter {
-        width: 295px;
-        max-height: 52px;
-        text-decoration: none;
-        border: none;
-        border-radius: 5px;
-        background-color: var(--second-color-2);
-        color: var(--main-color-2);
-        font-size: 20px;
-        font-family: "inter-medium";
-        text-align: center;
-        padding: 16px;
-    }
-
 }

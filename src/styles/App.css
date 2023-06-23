@@ -1,5 +1,6 @@
 .App {
   font-family: 'ferry', sans-serif;
+  overflow-x: hidden;
 }
 
 button {
