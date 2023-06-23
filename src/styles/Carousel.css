@@ -27,7 +27,7 @@
     letter-spacing: 0.01em;
 }
 
-.slick-slide div {
-    margin: 0 1rem;
+.slider slick-slide div {
+    margin: 0 2rem;
 }
 

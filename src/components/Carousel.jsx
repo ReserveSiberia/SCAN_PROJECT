@@ -49,7 +49,7 @@ function Carousel() {
     <div className="carousel">
       <h2>Почему именно мы</h2>
       
-      <Slider {...settings}>
+      <Slider className="slider" {...settings}>
         <div className="box">
             <img src={ImgPlaceholder1} alt="Banner"/>
             <h3>Высокая и оперативная скорость обработки заявки</h3>
