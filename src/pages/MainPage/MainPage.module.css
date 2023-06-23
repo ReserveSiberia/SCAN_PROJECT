@@ -63,7 +63,7 @@
     width: 92%;
     height: 349px;
     border: 5px solid aqua;
-    margin: 0 0 20px 0;
+    margin: 0 0 70px 0;
     align-items: center;
     font-size: 45px;
 }
@@ -79,24 +79,19 @@
 }
 
 .advertImage {
-    display: flex;
-    flex-direction: row;
     width: 92%;
     height: 575px;
     margin: 0 0 107px 0;
 }
 
-.advertImage img {
-    width: 50%;
+.advertImagePrimary {
+    display: block;
+    width: 100%;
     height: 575px;
 }
 
-/* ????????? */
 .advertImageSecondary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
+    display: none;
 }
 
 .tariffTitle {
@@ -176,18 +171,19 @@
 
     .advertImage {
         height: 392px;
-        margin: 20px 20px 40px 20px;
+        margin: 40px 0 40px 0;
         overflow: hidden;
-        position: relative;
     }
 
-    .advertImage img {
-        height: 392px;
-        width: 100%;
+    .advertImagePrimary {
+        display: none;
     }
 
     .advertImageSecondary {
-        display: none;
+        display: flex;
+        justify-content: center;
+        height: 392px;
+        transform: scale(0.85);
     }
 
     .tariffs {

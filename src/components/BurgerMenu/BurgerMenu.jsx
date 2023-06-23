@@ -34,16 +34,18 @@ function BurgerMenu(props) {
           <Link className={styles.linkMobile} to={" "}>
             Главная
           </Link>
-          <Link className={styles.linkMobile} to="/tariffs">
+          <Link className={styles.linkMobile} to="#">
             Тарифы
           </Link>
-          <Link className={styles.linkMobile} to="/faq">
+          <Link className={styles.linkMobile} to="#">
             FAQ
           </Link>
         </nav>
         <div className={styles.mobileAuth}>
-          <button className={styles.mobileRegister}>Зарегистрироваться</button>
-          <Link className={styles.mobileEnter} to={""}>
+          <Link to={"#"} className={styles.mobileRegister}>
+            Зарегистрироваться
+          </Link>
+          <Link className={styles.mobileEnter} to={"#"}>
             Войти
           </Link>
         </div>

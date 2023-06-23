@@ -4,8 +4,7 @@ import styles from "./MainPage.module.css";
 import TariffCard from "../../components/TariffCard/TariffCard.jsx";
 import MainImage from "../../assets/images/Main-image.svg";
 import AdvertImagePrimary from "../../assets/images/Advert-image-primary.svg";
-import AdvertImageSecondaryBig from "../../assets/images/Advert-image-secondary1.svg";
-import AdvertImageSecondarySmall from "../../assets/images/Advert-image-secondary2.svg";
+import AdvertImageSecondary from "../../assets/images/Advert-image-secondary.svg";
 import Bulb from "../../assets/images/Bulb-image.svg";
 import Target from "../../assets/images/Target-image.svg";
 import Note from "../../assets/images/Note-image.svg";
@@ -13,18 +12,18 @@ import Note from "../../assets/images/Note-image.svg";
 function MainPage() {
   return (
     <>
-      <div className={styles.main}>
+      <main className={styles.main}>
         <div className={styles.mainInfo}>
           <div className={styles.mainContent}>
-            <div className={styles.mainTitle}>
+            <header className={styles.mainTitle}>
               сервис по поиску публикаций о компании по его ИНН
-            </div>
+            </header>
             <div className={styles.mainDescription}>
               Комплексный анализ публикаций, получение данных в формате PDF на
               электронную почту.
             </div>
             <nav className={styles.nav}>
-              <Link className={styles.requestData} to={""}>
+              <Link className={styles.requestData} to={"#"}>
                 Запросить данные
               </Link>
             </nav>
@@ -40,14 +39,11 @@ function MainPage() {
           </span>
         </div>
         <div className={styles.advertImage}>
-          <img
-            className={styles.advertImagePrimary}
-            src={AdvertImagePrimary}
-            alt="AdvertisingPicture"
-          />
+          <div className={styles.advertImagePrimary}>
+            <img src={AdvertImagePrimary} alt="AdvertisingPicture" />
+          </div>
           <div className={styles.advertImageSecondary}>
-            <img src={AdvertImageSecondaryBig} alt="AdvertisingPicture" />
-            <img src={AdvertImageSecondarySmall} alt="AdvertisingPicture" />
+            <img src={AdvertImageSecondary} alt="AdvertisingPicture" />
           </div>
         </div>
         <div className={styles.tariffTitle}>наши тарифы</div>
@@ -103,7 +99,7 @@ function MainPage() {
             }}
           />
         </div>
-      </div>
+      </main>
     </>
   );
 }

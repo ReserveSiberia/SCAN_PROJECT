@@ -17,14 +17,6 @@ function Header() {
   const [menuStatus, setMenuStatus] = useState(false);
   const logoRef = useRef(null);
 
-  function handleBurgerMenu() {
-    if (menuStatus === false) {
-      setMenuStatus(true);
-    } else {
-      setMenuStatus(false);
-    }
-    console.log(menuStatus);
-  }
   return (
     <>
       <div className={menuStatus ? styles.headerInverted : styles.header}>
@@ -41,10 +33,10 @@ function Header() {
             <Link className={styles.link} to={" "}>
               Главная
             </Link>
-            <Link className={styles.link} to="/tariffs">
+            <Link className={styles.link} to="#">
               Тарифы
             </Link>
-            <Link className={styles.link} to="/faq">
+            <Link className={styles.link} to="#">
               FAQ
             </Link>
           </nav>
@@ -52,9 +44,11 @@ function Header() {
         {!isAuth ? (
           <div>
             <div className={styles.auth}>
-              <button className={styles.register}>Зарегистрироваться</button>
+              <Link className={styles.register} to={"#"}>
+                Зарегистрироваться
+              </Link>
               <div className={styles.separator}></div>
-              <Link className={styles.enter} to={""}>
+              <Link className={styles.enter} to={"#"}>
                 Войти
               </Link>
             </div>

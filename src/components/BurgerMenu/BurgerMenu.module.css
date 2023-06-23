@@ -105,11 +105,11 @@
 }
 
 .mobileRegister {
-    border: none;
     font-size: 16px;
     background-color: var(--main-color-1);
     color: var(--main-color-3);
     opacity: 0.4;
+    text-decoration: none;
     margin: 15px;
 }
 

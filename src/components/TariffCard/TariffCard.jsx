@@ -23,7 +23,7 @@ function TariffCard(props) {
         className={styles.tariffHeader}
       >
         <div className={styles.tariffInfo}>
-          <div>{props.title[0]}</div>
+          <header>{props.title[0]}</header>
           <div>{props.title[1]}</div>
         </div>
         <div className={styles.tariffImage}>
@@ -65,11 +65,11 @@ function TariffCard(props) {
       </div>
       {props.isPurchased ? (
         <div className={styles.toMyAccount}>
-          <Link to={""}>Перейти в личный кабинет</Link>
+          <Link to={"#"}>Перейти в личный кабинет</Link>
         </div>
       ) : (
         <div className={styles.aboutTariff}>
-          <Link to={""}>Подробнее</Link>
+          <Link to={"#"}>Подробнее</Link>
         </div>
       )}
     </div>

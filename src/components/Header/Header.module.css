@@ -69,6 +69,9 @@
     border: none;
     background-color: var(--main-color-3);
     margin-right: 12px;
+    text-decoration: none;
+    color: var(--main-color-2);
+    opacity: 0.4;
 }
 
 .enter {
