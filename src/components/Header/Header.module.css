@@ -26,7 +26,6 @@
 
 .logo {
     width: 141px;
-    margin: 0 60px;
 }
 
 .imgLogo {
@@ -39,11 +38,6 @@
     justify-content: space-between;
     align-items: center;
     width: 236px;
-}
-
-.link {
-    text-decoration: none;
-    color: var(--main-color-2);
 }
 
 .auth {

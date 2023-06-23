@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./BurgerMenu.module.css";
+import NavBar from "../NavBar/NavBar.jsx";
 
 function BurgerMenu(props) {
   const burgerRef = useRef(null);
@@ -31,15 +32,7 @@ function BurgerMenu(props) {
         }
       >
         <nav className={styles.navMobile}>
-          <Link className={styles.linkMobile} to={" "}>
-            Главная
-          </Link>
-          <Link className={styles.linkMobile} to="#">
-            Тарифы
-          </Link>
-          <Link className={styles.linkMobile} to="#">
-            FAQ
-          </Link>
+          <NavBar />
         </nav>
         <div className={styles.mobileAuth}>
           <Link to={"#"} className={styles.mobileRegister}>

@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import BurgerMenu from "../../components/BurgerMenu/BurgerMenu.jsx";
+import NavBar from "../NavBar/NavBar.jsx";
 import Logo from "../../assets/images/Logo-image.svg";
 import LogoInverted from "../../assets/images/Logo-image-inverted.svg";
-
 import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../../components/Loader/Loader.jsx";
 
@@ -30,15 +30,7 @@ function Header() {
         </div>
         <div>
           <nav className={styles.nav}>
-            <Link className={styles.link} to={" "}>
-              Главная
-            </Link>
-            <Link className={styles.link} to="#">
-              Тарифы
-            </Link>
-            <Link className={styles.link} to="#">
-              FAQ
-            </Link>
+            <NavBar />
           </nav>
         </div>
         {!isAuth ? (
