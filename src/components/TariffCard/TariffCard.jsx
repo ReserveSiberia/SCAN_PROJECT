@@ -5,8 +5,23 @@ import Tick from "../../assets/images/Tick-image.svg";
 
 function TariffCard(props) {
   return (
-    <div className={styles.tariffCard}>
-      <div className={styles.tariffHeader}>
+    <div
+      style={
+        props.isPurchased
+          ? {
+              border: `1px solid ${props.color.primaryColor}`,
+            }
+          : { border: "none" }
+      }
+      className={styles.tariffCard}
+    >
+      <div
+        style={{
+          backgroundColor: props.color.primaryColor,
+          color: props.color.secondaryColor,
+        }}
+        className={styles.tariffHeader}
+      >
         <div className={styles.tariffInfo}>
           <div>{props.title[0]}</div>
           <div>{props.title[1]}</div>

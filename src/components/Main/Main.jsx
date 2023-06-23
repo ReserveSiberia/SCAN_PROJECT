@@ -55,7 +55,10 @@ function Main() {
               "Поддержка 24/7",
             ]}
             isPurchased={true}
-            tariff={"Beginner"}
+            color={{
+              primaryColor: "rgba(255, 182, 79, 1)",
+              secondaryColor: "rgba(0, 0, 0, 1)",
+            }}
           />
           <TariffCard
             title={["Pro", "Для HR и фрилансеров", { icon: Target }]}
@@ -70,7 +73,10 @@ function Main() {
               "Рекомендации по приоритетам",
             ]}
             isPurchased={false}
-            tariff={"Pro"}
+            color={{
+              primaryColor: "rgba(124, 227, 225, 1)",
+              secondaryColor: "rgba(0, 0, 0, 1)",
+            }}
           />
           <TariffCard
             title={["Business", "Для корпоративных клиентов", { icon: Note }]}
@@ -81,7 +87,10 @@ function Main() {
               "Приоритетная поддержка",
             ]}
             isPurchased={false}
-            tariff={"Business"}
+            color={{
+              primaryColor: "rgba(0, 0, 0, 1)",
+              secondaryColor: "rgba(255, 255, 255, 1)",
+            }}
           />
         </div>
       </div>
