@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import './styles/variables.css';
 import styles from './SearchPage.module.css';
+=======
+import '../../styles/variables.css';
+import './SearchPage.module.css';
+>>>>>>> 5de5b35de77fddf828894fca6d8375466d6a9ba1
 import DocumentImage from '../../assets/images/SearchPageImg3.svg';
 import FolderImage from '../../assets/images/SearchPageImg2.svg';
 import GroupImage from '../../assets/images/SearchPageImg1.svg';
@@ -46,6 +51,7 @@ const SearchPage = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className={styles.searchPage}>
       <div className={styles.imageContainer}>
       <img src={DocumentImage} alt="Search Page" className={styles.imageDoc} />
@@ -55,6 +61,17 @@ const SearchPage = () => {
       </div>
       <div className={styles.imageContainer}>
       <img src={GroupImage} alt="Search Page" className={styles.imageGro} />
+=======
+    <div className="search-page">
+      <div className="search-page__image-container">
+        <img src={DocumentImage} alt="Search Page" className="Document__image" />
+      </div>
+      <div className="search-page__image-container">
+        <img src={FolderImage} alt="Search Page" className="Folder__image" />
+      </div>
+      <div className="search-page__image-container">
+        <img src={GroupImage} alt="Search Page" className="Group__image" />
+>>>>>>> 5de5b35de77fddf828894fca6d8375466d6a9ba1
       </div>
       <h1 className={styles.title}>НАЙДИТЕ НЕОБХОДИМЫЕ ДАННЫЕ В ПАРУ КЛИКОВ</h1>
       <p>Задайте параметры поиска. Чем больше заполните, тем точнее поиск</p>

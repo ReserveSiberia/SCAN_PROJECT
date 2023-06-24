@@ -1,12 +1,12 @@
 import './styles/App.css';
-import {SearchPage} from './pages/SearchPage';
+const fakeArr = [1, 2, 3, 4]
+import { SearchPage } from './pages/SearchPage';
 
 function App() {
   return (
     <div className="App">
-      <SearchPage />
+      Hello
     </div>
   );
 }
 
-export default App;
