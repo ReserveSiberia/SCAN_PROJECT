@@ -1,25 +1,25 @@
-.search-page {
+.searchPage {
     margin: 0 auto;
     width: 50%;
     font-family: 'Roboto', sans-serif;
   }
   
-  .search-page__title {
+  .title {
     text-align: center;
     margin: 50px 0;
   }
   
-  .search-page__form-group {
+  .form-group {
     margin-bottom: 20px;
   }
   
-  .search-page__label {
+  .label {
     display: block;
     margin-bottom: 5px;
   }
   
-  .search-page__input,
-  .search-page__select {
+  .input,
+  .select {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
@@ -28,12 +28,12 @@
     font-size: 16px;
   }
   
-  .search-page__checkbox {
+  .checkbox {
     display: inline-block;
     margin-right: 10px;
   }
   
-  .search-page__submit-button {
+  .submitButton {
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -43,7 +43,7 @@
     cursor: pointer;
   }
   
-  .search-page__submit-button:disabled {
+  .submitButton:disabled {
     background-color: #ccc; 
     cursor: default;
   }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './styles/variables.css';
-import './SearchPage.module.css';
-import DocumentImage from '../../assets/images/SearchPageImg3.svg.svg';
+import styles from './SearchPage.module.css';
+import DocumentImage from '../../assets/images/SearchPageImg3.svg';
 import FolderImage from '../../assets/images/SearchPageImg2.svg';
 import GroupImage from '../../assets/images/SearchPageImg1.svg';
 
@@ -46,21 +46,21 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="search-page">
-      <div className="search-page__image-container">
-      <img src={DocumentImage} alt="Search Page" className="Document__image" />
+    <div className={styles.searchPage}>
+      <div className={styles.imageContainer}>
+      <img src={DocumentImage} alt="Search Page" className={styles.imageDoc} />
       </div>
-      <div className="search-page__image-container">
-      <img src={FolderImage} alt="Search Page" className="Folder__image" />
+      <div className={styles.imageContainer}>
+      <img src={FolderImage} alt="Search Page" className={styles.imageFol} />
       </div>
-      <div className="search-page__image-container">
-      <img src={GroupImage} alt="Search Page" className="Group__image" />
+      <div className={styles.imageContainer}>
+      <img src={GroupImage} alt="Search Page" className={styles.imageGro} />
       </div>
-      <h1 className="search-page__title">НАЙДИТЕ НЕОБХОДИМЫЕ ДАННЫЕ В ПАРУ КЛИКОВ</h1>
+      <h1 className={styles.title}>НАЙДИТЕ НЕОБХОДИМЫЕ ДАННЫЕ В ПАРУ КЛИКОВ</h1>
       <p>Задайте параметры поиска. Чем больше заполните, тем точнее поиск</p>
       <form>
-        <div className="search-page__form-group">
-          <label htmlFor="inn" className="search-page__label">ИНН Компани*</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="inn" className={styles.label}>ИНН Компани*</label>
           <input
             type="text"
             id="inn"
@@ -68,103 +68,103 @@ const SearchPage = () => {
             value={searchData.inn}
             onChange={handleInputChange}
             required
-            className="search-page__input"
+            className={styles.input}
           />
         </div>
-        <div className="search-page__form-group">
+        <div className={styles.formGroup}>
           <input
             type="checkbox"
             id="completeness"
             name="completeness"
             checked={searchData.completeness}
             onChange={handleInputChange}
-            className="search-page__checkbox"
+            className={styles.checkbox}
           />
-          <label htmlFor="completeness" className="search-page__label">Признак максимальной полноты</label>
+          <label htmlFor="completeness" className={styles.label}>Признак максимальной полноты</label>
         </div>
-        <div className="search-page__form-group">
+        <div className={styles.formGroup}>
           <input
             type="checkbox"
             id="businessContext"
             name="businessContext"
             checked={searchData.businessContext}
             onChange={handleInputChange}
-            className="search-page__checkbox"
+            className={styles.checkbox}
           />
-          <label htmlFor="businessContext" className="search-page__label">Упоминания в бизнес-контексте</label>
+          <label htmlFor="businessContext" className={styles.label}>Упоминания в бизнес-контексте</label>
         </div>
-        <div className="search-page__form-group">
+        <div className={styles.formGroup}>
           <input
             type="checkbox"
             id="mainRole"
             name="mainRole"
             checked={searchData.mainRole}
             onChange={handleInputChange}
-            className="search-page__checkbox"
+            className={styles.checkbox}
           />
-          <label htmlFor="mainRole" className="search-page__label">Главная роль в публикации</label>
+            <label htmlFor="mainRole" className={styles.label}>Главная роль в публикации</label>
         </div>
-        <div className="search-page__form-group">
-          <label htmlFor="tonality" className="search-page__label">Тональность*</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="tonality" className={styles.label}>Тональность*</label>
           <select
             id="tonality"
             name="tonality"
             value={searchData.tonality}
             onChange={handleInputChange}
             required
-            className="search-page__select"
+            className={styles.select}
           >
             <option value="positive">Позитивная</option>
             <option value="negative">Негативная</option>
             <option value="any">Любая</option>
           </select>
         </div>
-        <div className="search-page__form-group">
+        <div className={styles.formGroup}>
           <input
             type="checkbox"
             id="riskFactors"
             name="riskFactors"
             checked={searchData.riskFactors}
             onChange={handleInputChange}
-            className="search-page__checkbox"
+            className={styles.checkbox}
           />
-          <label htmlFor="riskFactors" className="search-page__label">Публикации только с риск-факторами</label>
+          <label htmlFor="riskFactors" className={styles.label}>Публикации только с риск-факторами</label>
         </div>
-        <div className="search-page__form-group">
+        <div className={styles.formGroup}>
           <input
             type="checkbox"
             id="technicalNews"
             name="technicalNews"
             checked={searchData.technicalNews}
             onChange={handleInputChange}
-            className="search-page__checkbox"
+            className={styles.checkbox}
           />
-          <label htmlFor="technicalNews" className="search-page__label">Включать технические новости рынков</label>
+          <label htmlFor="technicalNews" className={styles.label}>Включать технические новости рынков</label>
         </div>
-        <div className="search-page__form-group">
+        <div className={styles.formGroup}>
           <input
             type="checkbox"
             id="announcements"
             name="announcements"
             checked={searchData.announcements}
             onChange={handleInputChange}
-            className="search-page__checkbox"
+            className={styles.checkbox}
           />
-          <label htmlFor="announcements" className="search-page__label">Включать анонсы и календари</label>
+          <label htmlFor="announcements" className={styles.label}>Включать анонсы и календари</label>
         </div>
-        <div className="search-page__form-group">
+        <div className={styles.formGroup}>
           <input
             type="checkbox"
             id="newsDigests"
             name="newsDigests"
             checked={searchData.newsDigests}
             onChange={handleInputChange}
-            className="search-page__checkbox"
+            className={styles.checkbox}
           />
-          <label htmlFor="newsDigests" className="search-page__label">Включать сводки новостей</label>
+          <label htmlFor="newsDigests" className={styles.label}>Включать сводки новостей</label>
         </div>
-        <div className="search-page__form-group">
-          <label htmlFor="documentCount" className="search-page__label">Количество документов в выдаче*</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="documentCount" className={styles.label}>Количество документов в выдаче*</label>
           <input
             type="number"
             id="documentCount"
@@ -172,11 +172,11 @@ const SearchPage = () => {
             value={searchData.documentCount}
             onChange={handleInputChange}
             required
-            className="search-page__input"
+            className={styles.input}
           />
         </div>
-        <div className="search-page__form-group">
-          <label htmlFor="startDate" className="search-page__label">Дата начала поиска*</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="startDate" className={styles.label}>Дата начала поиска*</label>
           <input
             type="date"
             id="startDate"
@@ -184,11 +184,11 @@ const SearchPage = () => {
             value={searchData.startDate}
             onChange={handleInputChange}
             required
-            className="search-page__input"
+            className={styles.input}
           />
         </div>
-        <div className="search-page__form-group">
-          <label htmlFor="endDate" className="search-page__label">Дата конца поиска*</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="endDate" className={styles.label}>Дата конца поиска*</label>
           <input
             type="date"
             id="endDate"
@@ -196,10 +196,10 @@ const SearchPage = () => {
             value={searchData.endDate}
             onChange={handleInputChange}
             required
-            className="search-page__input"
+            className={styles.input}
           />
         </div>
-        <button type="button" onClick={handleSearch} disabled={!isFormValid()} className="search-page__button">
+        <button type="button" onClick={handleSearch} disabled={!isFormValid()} className={styles.submitButton}>
           Поиск
         </button>
       </form>
@@ -207,4 +207,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export { SearchPage };
