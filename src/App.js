@@ -12,6 +12,7 @@ const fakeArr = [1, 2, 3, 4]
 function App() {
   const auth = false
   return (
+
     <div className="App">
 
       <Header />
@@ -27,6 +28,7 @@ function App() {
       <Footer />
 
     </div>
+
   );
 }
 
