@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './styles/variables.css';
+import '../../styles/variables.css';
 import './SearchPage.module.css';
-import DocumentImage from '../../assets/images/SearchPageImg3.svg.svg';
+import DocumentImage from '../../assets/images/SearchPageImg3.svg';
 import FolderImage from '../../assets/images/SearchPageImg2.svg';
 import GroupImage from '../../assets/images/SearchPageImg1.svg';
 
@@ -48,13 +48,13 @@ const SearchPage = () => {
   return (
     <div className="search-page">
       <div className="search-page__image-container">
-      <img src={DocumentImage} alt="Search Page" className="Document__image" />
+        <img src={DocumentImage} alt="Search Page" className="Document__image" />
       </div>
       <div className="search-page__image-container">
-      <img src={FolderImage} alt="Search Page" className="Folder__image" />
+        <img src={FolderImage} alt="Search Page" className="Folder__image" />
       </div>
       <div className="search-page__image-container">
-      <img src={GroupImage} alt="Search Page" className="Group__image" />
+        <img src={GroupImage} alt="Search Page" className="Group__image" />
       </div>
       <h1 className="search-page__title">НАЙДИТЕ НЕОБХОДИМЫЕ ДАННЫЕ В ПАРУ КЛИКОВ</h1>
       <p>Задайте параметры поиска. Чем больше заполните, тем точнее поиск</p>
@@ -207,4 +207,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export { SearchPage };
