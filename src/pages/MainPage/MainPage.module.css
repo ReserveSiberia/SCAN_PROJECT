@@ -102,7 +102,7 @@
 }
 
 /* Responsive web design */
-@media (min-width: 993px) and (max-width:1400px) {
+@media (min-width: 993px) and (max-width:1440px) {
     .mainTitle {
         font-size: 45px;
     }

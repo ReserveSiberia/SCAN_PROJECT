@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./MainPage.module.css";
 import TariffCard from "../../components/TariffCard/TariffCard.jsx";
-// import MainCarouselBar from "../../components/MainCarouselBar/MainCarouselBar.jsx";
+import MainCarouselBar from "../../components/MainCarouselBar/MainCarouselBar.jsx";
 import MainImage from "../../assets/images/Main-image.svg";
 import AdvertImagePrimary from "../../assets/images/Advert-image-primary.svg";
 import AdvertImageSecondary from "../../assets/images/Advert-image-secondary.svg";
@@ -36,7 +36,7 @@ function MainPage() {
         <div className={styles.advertisementBar}>
           <div>Почему именно мы</div>
           <div className={styles.carouselDesktop}>
-            {/* <MainCarouselBar /> */}
+            <MainCarouselBar />
           </div>
         </div>
         <div className={styles.advertImage}>
