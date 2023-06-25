@@ -1,13 +1,13 @@
 import * as React from "react";
-import Characters from "../../assests/fonts/Characters.svg";
-import lock from "../../assests/fonts/lock.svg";
-import Google from "../../assests/fonts/Google.svg";
-import facebook from "../../assests/fonts/facebook.svg";
-import yandex from "../../assests/fonts/yandex.svg";
+import Characters from "../../assets/images/Characters.svg";
+import lock from "../../assets/images/lock.svg";
+import Google from "../../assets/images/Google.svg";
+import facebook from "../../assets/images/facebook.svg";
+import yandex from "../../assets/images/yandex.svg";
 import { Button, Container } from "react-bootstrap";
-import styles from "./Authorization.module.css";
+import styles from "./Auth.module.css";
 
-const Authorization = () => {
+const Auth = () => {
   return (
     <Container>
       <div className={styles.displayForm}>
@@ -91,4 +91,4 @@ const Authorization = () => {
   );
 };
 
-export default Authorization;
+export { Auth };

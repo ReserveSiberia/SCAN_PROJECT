@@ -1,22 +1,15 @@
-@font-face {
-  font-family: "Ferry";
-  src: url("../../assests/fonts/Ferry-Black.woff");
-}
-@font-face {
-  font-family: "inter-regular";
-  src: url("../../assests/fonts/Inter-Regular.woff") format("woff");
-}
 .displayForm {
   display: flex;
   gap: 50px;
   margin-top: 160px;
   padding: auto 50px;
+  justify-content: center;
 }
 
 h1 {
   margin-top: 0;
   color: #000000;
-  font-family: "Ferry";
+  font-family: 'ferry';
   font-style: normal;
   font-weight: 900;
   font-size: 40px;
@@ -61,7 +54,7 @@ button {
   text-align: left;
   color: #949494;
   margin-bottom: -5px;
-  font-family: "inter-regular";
+  font-family: 'inter-regular';
   font-size: 16px;
 }
 
