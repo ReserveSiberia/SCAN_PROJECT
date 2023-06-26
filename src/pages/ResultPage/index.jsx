@@ -1,6 +1,8 @@
 import styles from './ResultPage.module.css'
 import { ResultItem } from '../../components/ResultItem'
+import { ResultSlider } from '../../components/ResultSlider'
 import ResultPageImg from '../../assets/images/ResultPageImg.svg'
+
 // Когда придут данные по запросу рендерим данный компонент и передаем в него данные.
 function ResultPage({ data }) {
   return (
@@ -14,7 +16,8 @@ function ResultPage({ data }) {
       </div>
       <div className={styles.summaryBlock}>
         <h2 className={styles.subtitle}>Общая сводка</h2>
-        {/* блок с общей сводкой */}
+        <p className={styles.dataSum}>Найдено {4221} вариантов</p>
+        <ResultSlider data={[]} />
       </div>
       <div className={styles.resultBlock}>
         <h2 className={styles.subtitle}>Список документов</h2>
