@@ -1,10 +1,11 @@
 import styles from './ResultSlider.module.css'
 import chevron from '../../assets/images/chevron.png'
 import { useRef } from 'react'
+import { mapArrFunc } from '../../utils/mapArrFunc'
 
 function ResultSlider({ data }) {
-
   const dataListRef = useRef(null)
+  const mappingData = mapArrFunc(data)
 
   const slideLeft = () => {
     dataListRef.current.scrollLeft += 133
@@ -35,63 +36,17 @@ function ResultSlider({ data }) {
             <div>10.09.2021</div>
             <div>5</div>
             <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li><li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
           </li>
+
+          {/* {mappingData.map(item => {
+            return (
+              <li className={styles.dataItem}>
+                <div>{item.date}</div>
+                <div>{item.totalValue}</div>
+                <div>{item.riskValue}</div>
+              </li>
+            )
+          })} */}
         </ul>
       </div>
       <button onClick={slideRight} className={styles.controller + " " + styles.controllerRight} type='button'><img src={chevron} /></button>
