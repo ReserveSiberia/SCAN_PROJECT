@@ -16,9 +16,9 @@ function MainPage() {
       <main className={styles.main}>
         <div className={styles.mainInfo}>
           <div className={styles.mainContent}>
-            <header className={styles.mainTitle}>
+            <h1 className={styles.mainTitle}>
               сервис по поиску публикаций о компании по его ИНН
-            </header>
+            </h1>
             <div className={styles.mainDescription}>
               Комплексный анализ публикаций, получение данных в формате PDF на
               электронную почту.

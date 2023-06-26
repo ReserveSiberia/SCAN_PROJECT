@@ -26,7 +26,7 @@ function Header() {
   });
   return (
     <>
-      <div className={menuStatus ? styles.headerInverted : styles.header}>
+      <header className={menuStatus ? styles.headerInverted : styles.header}>
         <div className={styles.logo}>
           <img
             ref={logoRef}
@@ -93,7 +93,7 @@ function Header() {
             </div>
           </div>
         )}
-      </div>
+      </header>
     </>
   );
 }
