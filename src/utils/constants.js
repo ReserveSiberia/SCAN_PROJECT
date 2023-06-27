@@ -20,4 +20,21 @@ const ADVERTBLOCK = [
   },
 ];
 
-export { ADVERTBLOCK };
+const USER = { id: "sf_student1", password: "4i2385j" };
+const BASE_URL = "https://gateway.scan-interfax.ru/";
+const LOGIN_URL = "api/v1/account/login";
+const LOGIN_INFO_URL = "api/v1/account/info";
+const GENERAL_DATA_URL = "api/v1/objectsearch/histograms";
+const DATA_URL = "api/v1/objectsearch";
+const DATA_DETAILS_URL = "/api/v1/documents";
+
+export {
+  ADVERTBLOCK,
+  USER,
+  BASE_URL,
+  LOGIN_URL,
+  LOGIN_INFO_URL,
+  GENERAL_DATA_URL,
+  DATA_URL,
+  DATA_DETAILS_URL,
+};
