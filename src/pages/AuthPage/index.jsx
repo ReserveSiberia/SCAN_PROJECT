@@ -4,13 +4,7 @@ import lock from "../../assets/images/lock.svg";
 import Google from "../../assets/images/Google.svg";
 import facebook from "../../assets/images/facebook.svg";
 import yandex from "../../assets/images/yandex.svg";
-import Characters from "../../assets/images/Characters.svg";
-import lock from "../../assets/images/lock.svg";
-import Google from "../../assets/images/Google.svg";
-import facebook from "../../assets/images/facebook.svg";
-import yandex from "../../assets/images/yandex.svg";
 import { Button, Container } from "react-bootstrap";
-import styles from "./Auth.module.css";
 import styles from "./Auth.module.css";
 
 const Auth = () => {
