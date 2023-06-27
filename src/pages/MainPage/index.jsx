@@ -105,4 +105,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export { MainPage };
