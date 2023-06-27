@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./Header.module.css";
@@ -8,22 +8,91 @@ import Logo from "../../assets/images/Logo-image.svg";
 import LogoInverted from "../../assets/images/Logo-image-inverted.svg";
 import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../../components/Loader/Loader.jsx";
+import { logIn, accountInfo } from "../../api/service";
 
 function Header() {
+  // temporary solution (isAuth goes from ?)
   const [isAuth, setIsAuth] = useState(true);
-  const [companiesUsed, setCompaniesUsed] = useState(15);
-  const [companiesLimit, setCompaniesLimit] = useState(100);
-  const [userName, setUsersName] = useState("John Doe");
+  // temporary solution (companiesUsed, companiesLimit goes from server data)
+  const [companiesUsed, setCompaniesUsed] = useState(null);
+  const [companiesLimit, setCompaniesLimit] = useState(null);
+  // // temporary solution (name goes from ?)
+  const [userName, setUsersName] = useState("sf_student1");
+  const [password, setPassword] = useState("4i2385j");
+  // temporary solution (photo goes from server url)
   const [userAvatar, setUsersAvatar] = useState(Photo);
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
+  const [token, setToken] = useState(localStorage.getItem("TOKEN"));
   const logoRef = useRef(null);
 
+  // temporary api tests
+  // useEffect(() => {
+  //   authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
+  // }, [token, companiesUsed, companiesLimit, isAuth]);
+
+  // function authControl(token, expireDate) {
+  //   if (token && expireDate) {
+  //     const now = new Date();
+  //     if (Date.parse(expireDate) > Date.parse(now)) {
+  //       setIsAuth(true);
+  //       console.log("Access granted");
+  //     }
+  //   } else {
+  //     console.log("Access denied");
+  //     setIsAuth(false);
+  //     localStorage.setItem("TOKEN", "");
+  //     localStorage.setItem("EXPIRE", "");
+  //     setToken(localStorage.getItem("TOKEN"));
+  //   }
+  // }
+
+  // function loggingIn() {
+  //   logIn(userName, password)
+  //     .then(() => {
+  //       return authControl(
+  //         localStorage.getItem("TOKEN"),
+  //         localStorage.getItem("EXPIRE")
+  //       );
+  //     })
+  //     .then(async () => {
+  //       await accountInfo(token)
+  //         .then((res) => {
+  //           setCompaniesUsed(res.usedCompanyCount);
+  //           setCompaniesLimit(res.companyLimit);
+  //         })
+  //         .catch((e) => {
+  //           setCompaniesUsed(companiesUsed);
+  //           setCompaniesLimit(companiesLimit);
+  //           console.log(e);
+  //         });
+  //     });
+
+  //   console.log("logging in");
+  // }
+
+  // async function getInfoData() {
+  //   await accountInfo(token)
+  //     .then((res) => {
+  //       setCompaniesUsed(res.usedCompanyCount);
+  //       setCompaniesLimit(res.companyLimit);
+  //     })
+  //     .catch((e) => {
+  //       setCompaniesUsed(companiesUsed);
+  //       setCompaniesLimit(companiesLimit);
+  //       console.log(e);
+  //     });
+  // }
+
   function handleAuthDrop() {
+    localStorage.setItem("TOKEN", "");
+    localStorage.setItem("EXPIRE", "");
     setIsAuth(false);
   }
+
   store.subscribe(() => {
     setMenuStatus(store.getState().menuStatus);
   });
+
   return (
     <>
       <header className={menuStatus ? styles.headerInverted : styles.header}>
@@ -43,6 +112,7 @@ function Header() {
         {!isAuth ? (
           <div>
             <div className={styles.auth}>
+              {/* testing logging in (add onClick={loggingIn})*/}
               <Link className={styles.register} to={"#"}>
                 Зарегистрироваться
               </Link>
