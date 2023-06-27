@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import store from "../../store/store.js";
 import styles from "./Header.module.css";
-import BurgerMenu from "../BurgerMenu/BurgerMenu.jsx";
+import BurgerMenu from "../../components/BurgerMenu/BurgerMenu.jsx";
 import NavBar from "../NavBar/NavBar.jsx";
 import Logo from "../../assets/images/Logo-image.svg";
 import LogoInverted from "../../assets/images/Logo-image-inverted.svg";
@@ -94,7 +95,7 @@ function Header() {
 
   return (
     <>
-      <div className={menuStatus ? styles.headerInverted : styles.header}>
+      <header className={menuStatus ? styles.headerInverted : styles.header}>
         <div className={styles.logo}>
           <img
             ref={logoRef}
@@ -116,7 +117,7 @@ function Header() {
                 Зарегистрироваться
               </Link>
               <div className={styles.separator}></div>
-              <Link className={styles.enter} to={"#"}>
+              <Link className={styles.enter} to={"/auth"}>
                 Войти
               </Link>
             </div>
@@ -144,13 +145,15 @@ function Header() {
             )}
             <div className={styles.profile}>
               <div className={styles.name}>
-                <div>{usersName}</div>
-                <button className={styles.exit}>Выйти</button>
+                <div>{userName}</div>
+                <button onClick={handleAuthDrop} className={styles.exit}>
+                  Выйти
+                </button>
               </div>
               <div className={styles.avatar}>
                 <img
                   className={styles.imgProfile}
-                  src={Photo}
+                  src={userAvatar}
                   alt="Avatar"
                 ></img>
               </div>
@@ -160,7 +163,7 @@ function Header() {
             </div>
           </div>
         )}
-      </div>
+      </header>
     </>
   );
 }
