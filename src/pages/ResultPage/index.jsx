@@ -1,33 +1,8 @@
 import styles from './ResultPage.module.css'
 import { ResultItem } from '../../components/ResultItem'
-import { ResultSlider } from '../../components/ResultSlider'
 import ResultPageImg from '../../assets/images/ResultPageImg.svg'
-import { mapArrFunc } from '../../utils/mapArrFunc'
-
 // Когда придут данные по запросу рендерим данный компонент и передаем в него данные.
 function ResultPage({ data }) {
-  const fakeArr = [
-    {
-      data: [{
-        date: "2020-11-01T03:00:00+03:00",
-        value: 0
-      }, {
-        date: "2020-06-01T03:00:00+03:00",
-        value: 1
-      }],
-      histogramType: "riskFactors"
-    },
-    {
-      data: [{
-        date: "2020-11-01T03:00:00+03:00",
-        value: 8
-      }, {
-        date: "2020-06-01T03:00:00+03:00",
-        value: 6
-      }],
-      histogramType: "totalDocuments"
-    },
-  ]
   return (
     <main className={styles.resultPage}>
       <div className={styles.soonResult}>
@@ -39,16 +14,16 @@ function ResultPage({ data }) {
       </div>
       <div className={styles.summaryBlock}>
         <h2 className={styles.subtitle}>Общая сводка</h2>
-        <p className={styles.dataSum}>Найдено {mapArrFunc(fakeArr).length} вариантов</p>
-        <ResultSlider data={fakeArr} />
+        {/* блок с общей сводкой */}
       </div>
       <div className={styles.resultBlock}>
         <h2 className={styles.subtitle}>Список документов</h2>
         <ul className={styles.resultList}>
-          {data ? data.map(item => <ResultItem data={[1, 2, 3, 4]} />) : <p>Результаты отсутствуют</p>}
+          {data ? data.map(item => <ResultItem />) : <p>Результаты отсутствуют</p>}
         </ul>
         <button className={styles.seeMoreBtn}>Показать больше</button>
       </div>
+
     </main>
   )
 }

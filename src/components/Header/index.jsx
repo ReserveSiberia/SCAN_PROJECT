@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import store from "../../store/store.js";
 import styles from "./Header.module.css";
 import BurgerMenu from "../BurgerMenu/BurgerMenu.jsx";
 import NavBar from "../NavBar/NavBar.jsx";
@@ -10,23 +9,17 @@ import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../Loader/Loader.jsx";
 
 function Header() {
-  const [isAuth, setIsAuth] = useState(true);
-  const [companiesUsed, setCompaniesUsed] = useState(15);
-  const [companiesLimit, setCompaniesLimit] = useState(100);
-  const [userName, setUsersName] = useState("John Doe");
-  const [userAvatar, setUsersAvatar] = useState(Photo);
-  const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
+  const [isAuth, setIsAuth] = useState(false);
+  const [companiesUsed, setCompaniesUsed] = useState(1);
+  const [companiesLimit, setCompaniesLimit] = useState(1);
+  const [usersName, setUsersName] = useState("John Doe");
+  const [usersAvatar, setUsersAvatar] = useState(null);
+  const [menuStatus, setMenuStatus] = useState(false);
   const logoRef = useRef(null);
 
-  function handleAuthDrop() {
-    setIsAuth(false);
-  }
-  store.subscribe(() => {
-    setMenuStatus(store.getState().menuStatus);
-  });
   return (
     <>
-      <header className={menuStatus ? styles.headerInverted : styles.header}>
+      <div className={menuStatus ? styles.headerInverted : styles.header}>
         <div className={styles.logo}>
           <img
             ref={logoRef}
@@ -47,7 +40,7 @@ function Header() {
                 Зарегистрироваться
               </Link>
               <div className={styles.separator}></div>
-              <Link className={styles.enter} to={"/auth"}>
+              <Link className={styles.enter} to={"#"}>
                 Войти
               </Link>
             </div>
@@ -75,15 +68,13 @@ function Header() {
             )}
             <div className={styles.profile}>
               <div className={styles.name}>
-                <div>{userName}</div>
-                <button onClick={handleAuthDrop} className={styles.exit}>
-                  Выйти
-                </button>
+                <div>{usersName}</div>
+                <button className={styles.exit}>Выйти</button>
               </div>
               <div className={styles.avatar}>
                 <img
                   className={styles.imgProfile}
-                  src={userAvatar}
+                  src={Photo}
                   alt="Avatar"
                 ></img>
               </div>
@@ -93,7 +84,7 @@ function Header() {
             </div>
           </div>
         )}
-      </header>
+      </div>
     </>
   );
 }

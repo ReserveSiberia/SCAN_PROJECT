@@ -5,7 +5,7 @@ import styles from "./NavBar.module.css";
 function NavBar() {
   return (
     <>
-      <Link className={styles.link} to={"/"}>
+      <Link className={styles.link} to={" "}>
         Главная
       </Link>
       <Link className={styles.link} to="#">

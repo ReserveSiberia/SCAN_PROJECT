@@ -21,7 +21,6 @@
 }
 
 .mainTitle {
-    font-family: "Ferry";
     min-width: 100%;
     font-size: 60px;
     margin: 70px 0 20px 0;
@@ -60,20 +59,29 @@
     height: 620px;
 }
 
-
 .advertisementBar {
     width: 92%;
     height: 349px;
+    border: 5px solid aqua;
     margin: 0 0 70px 0;
     align-items: center;
-    font-family: "Ferry";
     font-size: 45px;
+}
+
+.advertisementBar div {
+    margin-bottom: 70px;
+}
+
+.advertisementBar span {
+    display: block;
+    height: 225px;
+    border: 1px green solid;
 }
 
 .advertImage {
     width: 92%;
     height: 575px;
-    margin: 0 0 80px 0;
+    margin: 0 0 107px 0;
 }
 
 .advertImagePrimary {
@@ -88,7 +96,6 @@
 
 .tariffTitle {
     width: 100%;
-    font-family: "Ferry";
     font-size: 45px;
     margin: 0 0 70px 200px;
 }
@@ -102,18 +109,9 @@
 }
 
 /* Responsive web design */
-@media (min-width: 993px) and (max-width:1440px) {
+@media (min-width: 993px) and (max-width:1400px) {
     .mainTitle {
         font-size: 45px;
-    }
-
-    .advertImage {
-        height: 445px;
-        margin: 0 0 110px 0;
-    }
-
-    .mainInfo {
-        margin: 0 0 10px 14px;
     }
 }
 
@@ -123,7 +121,7 @@
         height: 598px;
         display: flex;
         flex-direction: column;
-        margin: 0 0 50px 14px;
+        margin: 0 0 120px 14px;
         align-items: center;
     }
 

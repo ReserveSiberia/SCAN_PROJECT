@@ -5,7 +5,7 @@ import LogoInverted from "../../assets/images/Logo-image-inverted.svg";
 function Footer() {
   return (
     <>
-      <footer className={styles.footer}>
+      <div className={styles.footer}>
         <div className={styles.logo}>
           <img className={styles.imgLogo} src={LogoInverted} alt="Logo"></img>
         </div>
@@ -16,7 +16,7 @@ function Footer() {
           </div>
           <div>Copyright. 2022</div>
         </div>
-      </footer>
+      </div>
     </>
   );
 }

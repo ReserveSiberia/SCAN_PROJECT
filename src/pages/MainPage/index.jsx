@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./MainPage.module.css";
 import TariffCard from "../../components/TariffCard/TariffCard.jsx";
-import MainCarouselBar from "../../components/MainCarouselBar/MainCarouselBar.jsx";
 import MainImage from "../../assets/images/Main-image.svg";
 import AdvertImagePrimary from "../../assets/images/Advert-image-primary.svg";
 import AdvertImageSecondary from "../../assets/images/Advert-image-secondary.svg";
@@ -16,9 +15,9 @@ function MainPage() {
       <main className={styles.main}>
         <div className={styles.mainInfo}>
           <div className={styles.mainContent}>
-            <h1 className={styles.mainTitle}>
+            <header className={styles.mainTitle}>
               сервис по поиску публикаций о компании по его ИНН
-            </h1>
+            </header>
             <div className={styles.mainDescription}>
               Комплексный анализ публикаций, получение данных в формате PDF на
               электронную почту.
@@ -35,9 +34,9 @@ function MainPage() {
         </div>
         <div className={styles.advertisementBar}>
           <div>Почему именно мы</div>
-          <div className={styles.carouselDesktop}>
-            <MainCarouselBar />
-          </div>
+          <span style={{ color: "red", fontSize: "40px" }}>
+            Gonna be Carousel component here...
+          </span>
         </div>
         <div className={styles.advertImage}>
           <div className={styles.advertImagePrimary}>
