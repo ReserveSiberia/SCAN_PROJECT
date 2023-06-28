@@ -8,84 +8,69 @@ import Logo from "../../assets/images/Logo-image.svg";
 import LogoInverted from "../../assets/images/Logo-image-inverted.svg";
 import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../../components/Loader/Loader.jsx";
-import { logIn, accountInfo } from "../../api/service";
+import { accountInfo } from "../../api/authService";
 
 function Header() {
-  // temporary solution (isAuth goes from ?)
-  const [isAuth, setIsAuth] = useState(true);
-  // temporary solution (companiesUsed, companiesLimit goes from server data)
-  const [companiesUsed, setCompaniesUsed] = useState(null);
-  const [companiesLimit, setCompaniesLimit] = useState(null);
-  // // temporary solution (name goes from ?)
-  const [userName, setUsersName] = useState("sf_student1");
-  const [password, setPassword] = useState("4i2385j");
-  // temporary solution (photo goes from server url)
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("AuthStatus"));
+  const [companiesUsed, setCompaniesUsed] = useState(
+    localStorage.getItem("CompaniesUsed")
+  );
+  const [companiesLimit, setCompaniesLimit] = useState(
+    localStorage.getItem("CompaniesLimit")
+  );
+  const [userName, setUserName] = useState(localStorage.getItem("User"));
+  // temporary solution (photo goes from server url???)
   const [userAvatar, setUsersAvatar] = useState(Photo);
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
   const [token, setToken] = useState(localStorage.getItem("TOKEN"));
+  const [renderer, setRenderer] = useState(false);
   const logoRef = useRef(null);
+  console.log("my auth", isAuth);
+  console.log("my name", userName);
+  console.log("my tries", companiesUsed);
+  console.log("my companiesLimit", companiesLimit);
 
-  // temporary api tests
-  // useEffect(() => {
-  //   authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
-  // }, [token, companiesUsed, companiesLimit, isAuth]);
+  useEffect(() => {
+    authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
+    if (isAuth) {
+      getInfoData(token);
+      console.log("nice");
+    }
+  }, [isAuth]);
 
-  // function authControl(token, expireDate) {
-  //   if (token && expireDate) {
-  //     const now = new Date();
-  //     if (Date.parse(expireDate) > Date.parse(now)) {
-  //       setIsAuth(true);
-  //       console.log("Access granted");
-  //     }
-  //   } else {
-  //     console.log("Access denied");
-  //     setIsAuth(false);
-  //     localStorage.setItem("TOKEN", "");
-  //     localStorage.setItem("EXPIRE", "");
-  //     setToken(localStorage.getItem("TOKEN"));
-  //   }
-  // }
+  function authControl(token, expireDate) {
+    if (token && expireDate) {
+      const now = new Date();
+      if (Date.parse(expireDate) > Date.parse(now)) {
+        localStorage.setItem("AuthStatus", true);
+        setIsAuth(true);
+        console.log("Access granted");
+      }
+    } else {
+      localStorage.setItem("AuthStatus", false);
+      setIsAuth(false);
+      localStorage.setItem("TOKEN", "");
+      localStorage.setItem("EXPIRE", "");
+      console.log("Access denied");
+    }
+  }
 
-  // function loggingIn() {
-  //   logIn(userName, password)
-  //     .then(() => {
-  //       return authControl(
-  //         localStorage.getItem("TOKEN"),
-  //         localStorage.getItem("EXPIRE")
-  //       );
-  //     })
-  //     .then(async () => {
-  //       await accountInfo(token)
-  //         .then((res) => {
-  //           setCompaniesUsed(res.usedCompanyCount);
-  //           setCompaniesLimit(res.companyLimit);
-  //         })
-  //         .catch((e) => {
-  //           setCompaniesUsed(companiesUsed);
-  //           setCompaniesLimit(companiesLimit);
-  //           console.log(e);
-  //         });
-  //     });
-
-  //   console.log("logging in");
-  // }
-
-  // async function getInfoData() {
-  //   await accountInfo(token)
-  //     .then((res) => {
-  //       setCompaniesUsed(res.usedCompanyCount);
-  //       setCompaniesLimit(res.companyLimit);
-  //     })
-  //     .catch((e) => {
-  //       setCompaniesUsed(companiesUsed);
-  //       setCompaniesLimit(companiesLimit);
-  //       console.log(e);
-  //     });
-  // }
+  async function getInfoData() {
+    await accountInfo(token)
+      .then((res) => {
+        localStorage.setItem("CompaniesUsed", res.usedCompanyCount);
+        localStorage.setItem("CompaniesLimit", res.companyLimit);
+        setRenderer(!renderer);
+      })
+      .catch((e) => {
+        console.log("Impossible to receive account data :", e);
+      });
+  }
 
   function handleAuthDrop() {
     localStorage.setItem("TOKEN", "");
     localStorage.setItem("EXPIRE", "");
+    localStorage.setItem("AuthStatus", false);
     setIsAuth(false);
   }
 
@@ -112,7 +97,6 @@ function Header() {
         {!isAuth ? (
           <div>
             <div className={styles.auth}>
-              {/* testing logging in (add onClick={loggingIn})*/}
               <Link className={styles.register} to={"#"}>
                 Зарегистрироваться
               </Link>

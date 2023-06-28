@@ -25,6 +25,7 @@
   min-width: 100%;
   font-size: 60px;
   margin: 70px 0 20px 0;
+  line-height: 1.2;
 }
 
 .mainDescription {
@@ -43,6 +44,12 @@
   background-color: var(--second-color-3);
   padding: 16px 59px;
   color: var(--main-color-3);
+  transition: all 0.8s ease-in-out;
+}
+
+.requestData:hover {
+  background-color: #95a3fb;
+  color: var(--main-color-2);
 }
 
 .nav {
