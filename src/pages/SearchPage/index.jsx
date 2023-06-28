@@ -41,150 +41,175 @@ const SearchPage = () => {
       searchData.documentCount.length > 0 &&
       searchData.startDate.length > 0 &&
       searchData.endDate.length > 0
+
     );
   };
 
   return (
     <main className={styles.searchPage}>
-       <div className={styles.imageContainer}>
+      <div class={styles.conteiner}>
+        <h1 className={styles.title}>НАЙДИТЕ НЕОБХОДИМЫЕ 
+        <p>ДАННЫЕ В ПАРУ КЛИКОВ.</p></h1>
+        <p className={styles.text}>Задайте параметры поиска. Чем больше заполните, тем точнее поиск</p>
+          <form className={styles.form}>
+            <div className={styles.column}>
+              <div className={styles.left}>
+                <label htmlFor="inn" className={styles.left_label}>ИНН Компани*</label>
+                <input
+                  type="text"
+                  id="inn"
+                  name="inn"
+                  value={searchData.inn}
+                  onChange={handleInputChange}
+                  required
+                  className={styles.left_input}
+                  placeholder="10 цифр"
+                />
+                <label htmlFor="tonality" className={styles.label}>Тональность*</label>
+                <select
+                  id="tonality"
+                  name="tonality"
+                  value={searchData.tonality}
+                  onChange={handleInputChange}
+                  required
+                  className={styles.select}
+                >
+                  <option value="any">Любая</option>
+                  <option value="positive">Позитивная</option>
+                  <option value="negative">Негативная</option>
+                </select>
+                <label htmlFor="documentCount" className={styles.left_label}>Количество документов в выдаче*</label>
+                <input
+                  type="number"
+                  id="documentCount"
+                  name="documentCount"
+                  value={searchData.documentCount}
+                  onChange={handleInputChange}
+                  required
+                  className={styles.left_input}
+                />
+                <h1>Диапозон поиска*</h1>
+                  <div className={styles.data}>
+                    <label htmlFor="startDate" className={styles.left_label}></label>
+                    <input
+                      placeholder="Дата начала"
+                      type="date"
+                      onfocus="(this.type = 'date')"
+                      id="startDate"
+                      name="startDate"
+                      value={searchData.startDate}
+                      onChange={handleInputChange}
+                      required
+                      className={styles.left_input}
+                    />
+                    <label htmlFor="endDate" className={styles.left_label}></label>
+                    <input
+                      placeholder="Дата конца"
+                      type="date"
+                      onfocus="(this.type = 'date')"
+                      id="endDate"
+                      name="endDate"
+                      value={searchData.endDate}
+                      onChange={handleInputChange}
+                      required
+                      className={styles.left_input}
+                    />
+                  </div>  
+              </div>
+            </div>  
+            <div className={styles.column}>
+              <div className={styles.right}>
+                <div className={styles.checkbox}>
+                  <input
+                    type="checkbox"
+                    id="completeness"
+                    name="completeness"
+                    checked={searchData.completeness}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                    <label htmlFor="completeness" className={styles.label}>Признак максимальной полноты</label>
+                </div>  
+                <div className={styles.checkbox}>  
+                  <input
+                    type="checkbox"
+                    id="businessContext"
+                    name="businessContext"
+                    checked={searchData.businessContext}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                    <label htmlFor="businessContext" className={styles.label}>Упоминания в бизнес-контексте</label>
+                    </div>  
+                <div className={styles.checkbox}> 
+                  <input
+                    type="checkbox"
+                    id="mainRole"
+                    name="mainRole"
+                    checked={searchData.mainRole}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                    <label htmlFor="mainRole" className={styles.label}>Главная роль в публикации</label>
+                    </div>  
+                <div className={styles.checkbox}> 
+                  <input
+                    type="checkbox"
+                    id="riskFactors"
+                    name="riskFactors"
+                    checked={searchData.riskFactors}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                    <label htmlFor="riskFactorss" className={styles.label}>Публикации только с риск-факторами </label>
+                    </div>  
+                <div className={styles.checkbox}> 
+                  <input
+                    type="checkbox"
+                    id="technicalNews"
+                    name="technicalNews"
+                    checked={searchData.technicalNews}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                    <label htmlFor="technicalNews" className={styles.label}>Включать технические новости рынков</label>
+                    </div>
+                <div className={styles.checkbox}> 
+                  <input
+                    type="checkbox"
+                    id="announcements"
+                    name="announcements"
+                    checked={searchData.announcements}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                    <label htmlFor="announcements" className={styles.label}>Включать анонсы и календари</label>
+                    </div>       
+                <div className={styles.checkbox}> 
+                  <input
+                    type="checkbox"
+                    id="newsDigests"
+                    name="newsDigests"
+                    checked={searchData.newsDigests}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                    <label htmlFor="newsDigests" className={styles.label}>Включать сводки новостей</label>
+                </div> 
+                <button type="button" onClick={handleSearch} disabled={!isFormValid()} className={styles.submitButton}>
+                  Поиск
+                </button>
+                <p className={styles.text2}>* Обязательные к заполнению поля</p>
+              </div>  
+            </div>
+          </form>
+        </div>  
+      <div className={styles.imageContainer}>
         <img src={DocumentImage} alt="Search Page" className={styles.imageDoc} />
         <img src={FolderImage} alt="Search Page" className={styles.imageFol} />
         <img src={GroupImage} alt="Search Page" className={styles.imageGro} />
       </div>
-      <h1 className={styles.title}>НАЙДИТЕ НЕОБХОДИМЫЕ ДАННЫЕ В ПАРУ КЛИКОВ</h1>
-      <p>Задайте параметры поиска. Чем больше заполните, тем точнее поиск</p>
-        <form className={styles.form}>
-          <div className={styles.left}>
-            <label htmlFor="inn" className={styles.label}>ИНН Компани*</label>
-            <input
-              type="text"
-              id="inn"
-              name="inn"
-              value={searchData.inn}
-              onChange={handleInputChange}
-              required
-              className={styles.input}
-            />
-            <label htmlFor="documentCount" className={styles.label}>Количество документов в выдаче*</label>
-            <input
-              type="number"
-              id="documentCount"
-              name="documentCount"
-              value={searchData.documentCount}
-              onChange={handleInputChange}
-              required
-              className={styles.input}
-            />
-            <label htmlFor="startDate" className={styles.label}>Дата начала поиска*</label>
-            <input
-              type="date"
-              id="startDate"
-              name="startDate"
-              value={searchData.startDate}
-              onChange={handleInputChange}
-              required
-              className={styles.input}
-            />
-            <label htmlFor="endDate" className={styles.label}>Дата конца поиска*</label>
-            <input
-              type="date"
-              id="endDate"
-              name="endDate"
-              value={searchData.endDate}
-              onChange={handleInputChange}
-              required
-              className={styles.input}
-            />
-            </div>
-          <div className={styles.right}>
-            <label htmlFor="completeness" className={styles.label}>Признак максимальной полноты</label>
-            <input
-              type="checkbox"
-              id="businessContext"
-              name="businessContext"
-              checked={searchData.businessContext}
-              onChange={handleInputChange}
-              className={styles.checkbox}
-            />
-            <label htmlFor="businessContext" className={styles.label}>Упоминания в бизнес-контексте</label>
-            <input
-              type="checkbox"
-              id="mainRole"
-              name="mainRole"
-              checked={searchData.mainRole}
-              onChange={handleInputChange}
-              className={styles.checkbox}
-            />
-            <label htmlFor="mainRole" className={styles.label}>Главная роль в публикации</label>
-            <input
-              type="checkbox"
-              id="completeness"
-              name="completeness"
-              checked={searchData.completeness}
-              onChange={handleInputChange}
-              className={styles.checkbox}
-              />
-            <label htmlFor="tonality" className={styles.label}>Тональность*</label>
-            <select
-              id="tonality"
-              name="tonality"
-              value={searchData.tonality}
-              onChange={handleInputChange}
-              required
-              className={styles.select}
-            >
-              <option value="positive">Позитивная</option>
-              <option value="negative">Негативная</option>
-              <option value="any">Любая</option>
-            </select>
-            <input
-              type="checkbox"
-              id="riskFactors"
-              name="riskFactors"
-              checked={searchData.riskFactors}
-              onChange={handleInputChange}
-              className={styles.checkbox}
-            />
-            <label htmlFor="riskFactors" className={styles.label}>Публикации только с риск-факторами</label>
-
-            <input
-              type="checkbox"
-              id="technicalNews"
-              name="technicalNews"
-              checked={searchData.technicalNews}
-              onChange={handleInputChange}
-              className={styles.checkbox}
-            />
-            <label htmlFor="technicalNews" className={styles.label}>Включать технические новости рынков</label>
-
-            <input
-              type="checkbox"
-              id="announcements"
-              name="announcements"
-              checked={searchData.announcements}
-              onChange={handleInputChange}
-              className={styles.checkbox}
-            />
-            <label htmlFor="announcements" className={styles.label}>Включать анонсы и календари</label>
-  
-            <input
-              type="checkbox"
-              id="newsDigests"
-              name="newsDigests"
-              checked={searchData.newsDigests}
-              onChange={handleInputChange}
-              className={styles.checkbox}
-            />
-            <label htmlFor="newsDigests" className={styles.label}>Включать сводки новостей</label>
-            </div> 
-                <button type="button" onClick={handleSearch} disabled={!isFormValid()} className={styles.submitButton}>
-            Поиск
-            {!isFormValid() && (
-            <div className={styles.error}>Пожалуйста, заполните все поля формы.</div>
-            )}
-          </button>
-        </form>
-      </main>
+    </main>
     );
   };
 

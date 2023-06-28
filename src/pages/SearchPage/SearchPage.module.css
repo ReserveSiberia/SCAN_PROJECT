@@ -2,8 +2,17 @@
   box-sizing: border-box;
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 20px 109px 20px;
+  padding: 0 20px  20px;
   background-color: var(--main-color-3);
+}
+
+.container {
+  padding-top: 20px;
+  display: table;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .title {
@@ -14,48 +23,93 @@
   color: var(--main-color-2);
 }
 
+.text {
+  padding: 20px 20px 20px 0px;
+  width: 60%;
+  margin-right: 0px;
+}
+
+.text2 {
+  padding: 20px 20px 20px 0px;
+  font-size: 14px;
+  color: rgb(153, 153, 153);
+}
+
 .form {
-  border: thick solid rgba(0, 0, 0, 0.1);;
+  box-sizing: border-box;
+  border: thick solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  float: left;
   display: flex;
-  justify-content: auto;
-  flex-wrap: wrap;
-  padding: 10px 10px 10px 10px;
-  column-gap: 3rem;
-  
+  padding: 20px 20px 20px 20px;
+  width: 60%;
+  display: inline-block;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  float: left;
 }
 
-.left {
-  white-space: normal;	
-	display: inline-block;
-	width: 48%;
-	vertical-align: top;
-}
-
-.form .form-righ:first-child {
-	margin-right: 0;
-  column-gap: 50rem;
+.column {
+  display: flex;
+  align-items: flex-start;
+  column-count: 2;
+  width: 50%;
+  float: left;
 }
 
 .label {
-  display: block;
-  margin-bottom: 5px;
+  display: inline-block;
+  margin-bottom: 1px;
 }
 
-.input,
-.select {
-  width: 100%;
+.left {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+  float: left;
+  display: flex;
+  box-sizing: border-box;
+  line-height: 30px;
+}
+
+.left_input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 50%;
   padding: 10px;
   border-radius: 5px;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  font-size: 16px;
+}
+
+.data {
+  display: flex;
+  column-count: 2;
+  column-rule: 20px;
+  float: left;
+}
+
+.input,
+.select {
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 }
 
 .checkbox {
   display: inline-block;
   margin-right: 10px;
+  line-height: 20px;
+  font-size: 14px;
 }
 
 .submitButton {
@@ -66,40 +120,122 @@
   color: var(--main-color-3);
   font-size: 16px;
   cursor: pointer;
+  margin-top: 50px;
 }
 
 .submitButton:disabled {
   background-color: var(--second-color-3); 
   cursor: default;
+  opacity: 0.5;
 }
 
 .imageContainer {
-  font-size: 30%;
-  margin-top: 25px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 35%;
+  margin-top: 0px;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  border: 1px;
   float: right;
 }
 
-.error {
-  color: var(--main-color-3);
-  margin-bottom: 10px;
+.imageDoc {
+  width: 15%;
+  margin-bottom: 50px;
 }
 
-
+.imageFol {
+  width: 20%;
+  margin-left: 200px;
+  margin-top: 20px;
+}
+.imageGro {
+  width: 80%;
+  margin-left: 10px;
+  align-self: flex-end;
+  margin-bottom: 50px;
+}
 
 @media (max-width: 1140px) {
   .searchPage {
-    max-width: 550px;
-  }
-
-  .form {
-    grid-template-columns: 335px;
-    justify-content: left;
-    margin-top: 34px;
+    max-width: 960px;
+    padding: 20px;
   }
 
   .title {
-    font-size: 28px;
-    line-height: 34px;
+    font-size: 200%;
+    margin: 0 auto;
   }
 
+  .container {
+    margin-right: -10px;
+  }
+
+  .text {
+    width: 100%;
+  }
+
+  .form {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 0;
+    float: none;
+  }
+
+  .column {
+    width: 100%;
+    column-count: 1;
+  }
+
+  .left {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .right {
+    display: none;
+  }
+
+  .data {
+    width: 90%;
+    column-count: 1;
+  }
+
+  .imageContainer {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 30px;
+  }
+
+  .imageDoc {
+    display: none;
+  }
+
+  .imageFol {
+    display: none;
+  }
+
+  .imageGro {
+    width: 60%;
+    margin-left: 50px;
+    align-self: center;
+    justify-content: center;
+  }
 }
+
+
+
+
+
+
+
+
+ 
+
+  
+
+
+ 
+  
