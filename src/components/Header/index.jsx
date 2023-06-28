@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./Header.module.css";
 import BurgerMenu from "../../components/BurgerMenu/BurgerMenu.jsx";
@@ -25,6 +25,7 @@ function Header() {
   const [token, setToken] = useState(localStorage.getItem("TOKEN"));
   const [renderer, setRenderer] = useState(false);
   const logoRef = useRef(null);
+  const location = useLocation();
   console.log("my auth", isAuth);
   console.log("my name", userName);
   console.log("my tries", companiesUsed);
@@ -36,7 +37,7 @@ function Header() {
       getInfoData(token);
       console.log("nice");
     }
-  }, [isAuth]);
+  }, [isAuth, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
