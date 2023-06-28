@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { ResultPage } from './pages/ResultPage';
 import { Auth } from "./pages/AuthPage";
 import { MainPage } from "./pages/MainPage";
+import { SearchPage } from "./pages/SearchPage";
 
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
