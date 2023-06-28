@@ -26,10 +26,6 @@ function Header() {
   const [renderer, setRenderer] = useState(false);
   const logoRef = useRef(null);
   const location = useLocation();
-  console.log("my auth", isAuth);
-  console.log("my name", userName);
-  console.log("my tries", companiesUsed);
-  console.log("my companiesLimit", companiesLimit);
 
   useEffect(() => {
     authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
