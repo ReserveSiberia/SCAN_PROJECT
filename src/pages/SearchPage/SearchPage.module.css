@@ -37,7 +37,7 @@
 
 .form {
   box-sizing: border-box;
-  border: thick solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 20px 0px #00000033;
   border-radius: 10px;
   display: flex;
   padding: 20px 20px 20px 20px;
@@ -86,8 +86,14 @@
 .data {
   display: flex;
   column-count: 2;
-  column-rule: 20px;
+  column-rule: 50px;
   float: left;
+  margin-right: 10px;
+}
+
+.date_separator {
+  width: 16px;
+
 }
 
 .input,
@@ -179,6 +185,7 @@
 
   .form {
     width: 100%;
+    box-shadow: 0px 0px 20px 0px #00000033;
     margin-top: 30px;
     margin-bottom: 0;
     float: none;
@@ -224,6 +231,7 @@
     justify-content: center;
   }
 }
+
 
 
 

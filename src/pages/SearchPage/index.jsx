@@ -47,7 +47,7 @@ const SearchPage = () => {
 
   return (
     <main className={styles.searchPage}>
-      <div class={styles.conteiner}>
+      <div className={styles.conteiner}>
         <h1 className={styles.title}>НАЙДИТЕ НЕОБХОДИМЫЕ 
         <p>ДАННЫЕ В ПАРУ КЛИКОВ.</p></h1>
         <p className={styles.text}>Задайте параметры поиска. Чем больше заполните, тем точнее поиск</p>
@@ -87,6 +87,7 @@ const SearchPage = () => {
                   onChange={handleInputChange}
                   required
                   className={styles.left_input}
+                  placeholder="1 до 1000" 
                 />
                 <h1>Диапозон поиска*</h1>
                   <div className={styles.data}>
@@ -94,7 +95,6 @@ const SearchPage = () => {
                     <input
                       placeholder="Дата начала"
                       type="date"
-                      onfocus="(this.type = 'date')"
                       id="startDate"
                       name="startDate"
                       value={searchData.startDate}
@@ -102,11 +102,11 @@ const SearchPage = () => {
                       required
                       className={styles.left_input}
                     />
+                    <div className={styles.date_separator}></div>
                     <label htmlFor="endDate" className={styles.left_label}></label>
                     <input
                       placeholder="Дата конца"
                       type="date"
-                      onfocus="(this.type = 'date')"
                       id="endDate"
                       name="endDate"
                       value={searchData.endDate}
