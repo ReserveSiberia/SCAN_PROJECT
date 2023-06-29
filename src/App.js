@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { ResultPage } from "./pages/ResultPage";
 import { Auth } from "./pages/AuthPage";
 import { MainPage } from "./pages/MainPage";
+import { AuthErrorPage } from "./pages/AuthErrorPage";
 
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { useState } from "react";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/search" element={<>SearchPage</>} />
           <Route path="/result" element={<ResultPage data={fakeArr} />} />
         </Route>
+        <Route path="/error" element={<AuthErrorPage />} />
       </Routes>
       <Footer />
     </div>

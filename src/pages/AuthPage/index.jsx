@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Characters from "../../assets/images/Characters.svg";
 import lock from "../../assets/images/lock.svg";
@@ -12,6 +12,7 @@ import { logIn } from "../../api/authService";
 const Auth = () => {
   const [userName, setUsersName] = useState(localStorage.getItem("User"));
   const [password, setPassword] = useState("");
+  const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
 
   function authControl(token, expireDate) {
@@ -24,11 +25,11 @@ const Auth = () => {
       }
     } else {
       localStorage.setItem("AuthStatus", false);
+      setIsAuth(localStorage.getItem("AuthStatus"));
       localStorage.setItem("TOKEN", "");
       localStorage.setItem("EXPIRE", "");
       console.log("Access denied");
-      // redirection to ?
-      // navigate("/");
+      navigate("/error");
     }
   }
 
@@ -48,13 +49,18 @@ const Auth = () => {
     <Container>
       <div className={styles.displayForm}>
         <div className={styles.Authorization}>
-          <h1>
-            ДЛЯ ОФОРМЛЕНИЯ ПОДПИСКИ
-            <br />
-            НА ТАРИФ, НЕОБХОДИМО
-            <br />
-            АВТОРИЗОВАТЬСЯ.
-          </h1>
+          {isAuth === 2 ? (
+            <h1>wrong data</h1>
+          ) : (
+            <h1>
+              ДЛЯ ОФОРМЛЕНИЯ ПОДПИСКИ
+              <br />
+              НА ТАРИФ, НЕОБХОДИМО
+              <br />
+              АВТОРИЗОВАТЬСЯ.
+            </h1>
+          )}
+
           <img
             className={styles.Characters}
             src={Characters}
