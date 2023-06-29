@@ -29,11 +29,12 @@ function Header() {
 
   useEffect(() => {
     authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
+    setUserName(localStorage.getItem("User"));
     if (isAuth) {
       getInfoData(token);
       console.log("nice");
     }
-  }, [isAuth, location]);
+  }, [isAuth, userName, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
