@@ -3,6 +3,7 @@ import styles from './SearchPage.module.css';
 import DocumentImage from '../../assets/images/SearchPageImg3.svg';
 import FolderImage from '../../assets/images/SearchPageImg2.svg';
 import GroupImage from '../../assets/images/SearchPageImg1.svg';
+import getGeneralData from '../../api/service';
 
 const SearchPage = () => {
   const [searchData, setSearchData] = useState({
@@ -29,8 +30,8 @@ const SearchPage = () => {
   };
 
   const handleSearch = () => {
-    // Здесь нужно реализовать обработку введенных данных и выполнение запроса на сервер
-    console.log(searchData);
+    return console.log(getGeneralData(searchData))
+        
   };
 
   const isFormValid = () => {
