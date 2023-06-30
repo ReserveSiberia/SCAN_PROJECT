@@ -7,6 +7,7 @@ import { ResultPage } from "./pages/ResultPage";
 import { Auth } from "./pages/AuthPage";
 import { MainPage } from "./pages/MainPage";
 import { AuthErrorPage } from "./pages/AuthErrorPage";
+import { SearchPage } from "./pages/SearchPage";
 
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { useState } from "react";
@@ -21,9 +22,9 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/auth" element={<Auth />} />
         {/* Если пользователь не авторизован то редиректит на форму авторизации, иначе есть доступ к поиску и результатам */}
-        <Route element={isAuth ? <Outlet /> : <Navigate to="/auth" />}>
-          <Route path="/search" element={<>SearchPage</>} />
-          <Route path="/result" element={<ResultPage data={fakeArr} />} />
+        <Route element={auth ? <Outlet /> : <Navigate to="/auth" />}>
+          <Route path='/search' element={<SearchPage />} />
+          <Route path='/result' element={<ResultPage data={fakeArr} />} />
         </Route>
         <Route path="/error" element={<AuthErrorPage />} />
       </Routes>
