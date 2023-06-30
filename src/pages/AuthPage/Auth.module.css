@@ -2,8 +2,8 @@
   display: flex;
   gap: 50px;
   margin-top: 50px;
-  padding: auto 50px;
   justify-content: center;
+  padding: 0 20px;
 }
 
 h1 {
@@ -144,4 +144,42 @@ img.Characters {
 
 .facebook {
   margin: 15px;
+}
+
+@media (max-width: 960px) {
+  .displayForm {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loginForm {
+    max-width: 335px;
+  }
+
+  .login {
+    max-width: 100px;
+  }
+
+  .login::after {
+    width: 90px;
+    left: 10px;
+  }
+
+  .signup {
+    max-width: 180px;
+  }
+
+  .signup::after {
+    width: 180px;
+    left: 7px;
+  }
+
+  .loginsignup {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .imgsvg {
+    justify-content: center;
+  }
 }

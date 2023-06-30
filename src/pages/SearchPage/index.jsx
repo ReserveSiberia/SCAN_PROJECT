@@ -3,7 +3,7 @@ import styles from './SearchPage.module.css';
 import DocumentImage from '../../assets/images/SearchPageImg3.svg';
 import FolderImage from '../../assets/images/SearchPageImg2.svg';
 import GroupImage from '../../assets/images/SearchPageImg1.svg';
-import { getGeneralData, getData, getDetailData } from '../../api/service';
+import { getGeneralData, getData, getDetailData } from '../../api/dataService';
 
 
 const SearchPage = () => {
@@ -49,9 +49,10 @@ const SearchPage = () => {
   return (
     <main className={styles.searchPage}>
       <div className={styles.conteiner}>
-        <h1 className={styles.title}>НАЙДИТЕ НЕОБХОДИМЫЕ 
-        <p>ДАННЫЕ В ПАРУ КЛИКОВ.</p></h1>
+        <h1 className={styles.title}>НАЙДИТЕ НЕОБХОДИМЫЕ
+          <p>ДАННЫЕ В ПАРУ КЛИКОВ.</p></h1>
         <p className={styles.text}>Задайте параметры поиска. Чем больше заполните, тем точнее поиск</p>
+        <div className={styles.content}>
           <form className={styles.form}>
             <div className={styles.column}>
               <div className={styles.left}>
@@ -88,36 +89,36 @@ const SearchPage = () => {
                   onChange={handleInputChange}
                   required
                   className={styles.left_input}
-                  placeholder="1 до 1000" 
+                  placeholder="1 до 1000"
                 />
-                <h1>Диапозон поиска*</h1>
-                  <div className={styles.data}>
-                    <label htmlFor="startDate" className={styles.left_label}></label>
-                    <input
-                      placeholder="Дата начала"
-                      type="date"
-                      id="startDate"
-                      name="startDate"
-                      value={searchData.startDate}
-                      onChange={handleInputChange}
-                      required
-                      className={styles.left_input}
-                    />
-                    <div className={styles.date_separator}></div>
-                    <label htmlFor="endDate" className={styles.left_label}></label>
-                    <input
-                      placeholder="Дата конца"
-                      type="date"
-                      id="endDate"
-                      name="endDate"
-                      value={searchData.endDate}
-                      onChange={handleInputChange}
-                      required
-                      className={styles.left_input}
-                    />
-                  </div>  
+                <span>Диапозон поиска*</span>
+                <div className={styles.data}>
+                  <label htmlFor="startDate" className={styles.left_label}></label>
+                  <input
+                    placeholder="Дата начала"
+                    type="date"
+                    id="startDate"
+                    name="startDate"
+                    value={searchData.startDate}
+                    onChange={handleInputChange}
+                    required
+                    className={styles.left_input}
+                  />
+                  <div className={styles.date_separator}></div>
+                  <label htmlFor="endDate" className={styles.left_label}></label>
+                  <input
+                    placeholder="Дата конца"
+                    type="date"
+                    id="endDate"
+                    name="endDate"
+                    value={searchData.endDate}
+                    onChange={handleInputChange}
+                    required
+                    className={styles.left_input}
+                  />
+                </div>
               </div>
-            </div>  
+            </div>
             <div className={styles.column}>
               <div className={styles.right}>
                 <div className={styles.checkbox}>
@@ -129,9 +130,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                    <label htmlFor="completeness" className={styles.label}>Признак максимальной полноты</label>
-                </div>  
-                <div className={styles.checkbox}>  
+                  <label htmlFor="completeness" className={styles.label}>Признак максимальной полноты</label>
+                </div>
+                <div className={styles.checkbox}>
                   <input
                     type="checkbox"
                     id="businessContext"
@@ -140,9 +141,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                    <label htmlFor="businessContext" className={styles.label}>Упоминания в бизнес-контексте</label>
-                    </div>  
-                <div className={styles.checkbox}> 
+                  <label htmlFor="businessContext" className={styles.label}>Упоминания в бизнес-контексте</label>
+                </div>
+                <div className={styles.checkbox}>
                   <input
                     type="checkbox"
                     id="mainRole"
@@ -151,9 +152,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                    <label htmlFor="mainRole" className={styles.label}>Главная роль в публикации</label>
-                    </div>  
-                <div className={styles.checkbox}> 
+                  <label htmlFor="mainRole" className={styles.label}>Главная роль в публикации</label>
+                </div>
+                <div className={styles.checkbox}>
                   <input
                     type="checkbox"
                     id="riskFactors"
@@ -162,9 +163,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                    <label htmlFor="riskFactorss" className={styles.label}>Публикации только с риск-факторами </label>
-                    </div>  
-                <div className={styles.checkbox}> 
+                  <label htmlFor="riskFactorss" className={styles.label}>Публикации только с риск-факторами </label>
+                </div>
+                <div className={styles.checkbox}>
                   <input
                     type="checkbox"
                     id="technicalNews"
@@ -173,9 +174,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                    <label htmlFor="technicalNews" className={styles.label}>Включать технические новости рынков</label>
-                    </div>
-                <div className={styles.checkbox}> 
+                  <label htmlFor="technicalNews" className={styles.label}>Включать технические новости рынков</label>
+                </div>
+                <div className={styles.checkbox}>
                   <input
                     type="checkbox"
                     id="announcements"
@@ -184,9 +185,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                    <label htmlFor="announcements" className={styles.label}>Включать анонсы и календари</label>
-                    </div>       
-                <div className={styles.checkbox}> 
+                  <label htmlFor="announcements" className={styles.label}>Включать анонсы и календари</label>
+                </div>
+                <div className={styles.checkbox}>
                   <input
                     type="checkbox"
                     id="newsDigests"
@@ -195,23 +196,26 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                    <label htmlFor="newsDigests" className={styles.label}>Включать сводки новостей</label>
-                </div> 
+                  <label htmlFor="newsDigests" className={styles.label}>Включать сводки новостей</label>
+                </div>
                 <button type="button" onClick={handleSearch} disabled={!isFormValid()} className={styles.submitButton}>
                   Поиск
                 </button>
                 <p className={styles.text2}>* Обязательные к заполнению поля</p>
-              </div>  
+              </div>
             </div>
           </form>
-        </div>  
-      <div className={styles.imageContainer}>
-        <img src={DocumentImage} alt="Search Page" className={styles.imageDoc} />
-        <img src={FolderImage} alt="Search Page" className={styles.imageFol} />
-        <img src={GroupImage} alt="Search Page" className={styles.imageGro} />
+          <div className={styles.imageContainer}>
+            <img src={DocumentImage} alt="Search Page" className={styles.imageDoc} />
+            <img src={FolderImage} alt="Search Page" className={styles.imageFol} />
+            <img src={GroupImage} alt="Search Page" className={styles.imageGro} />
+          </div>
+        </div>
+
       </div>
+
     </main>
-    );
-  };
+  );
+};
 
 export { SearchPage };
