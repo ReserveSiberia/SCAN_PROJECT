@@ -24,7 +24,7 @@ function MainPage() {
               электронную почту.
             </div>
             <nav className={styles.nav}>
-              <Link className={styles.requestData} to={"#"}>
+              <Link className={styles.requestData} to={"/search"}>
                 Запросить данные
               </Link>
             </nav>
