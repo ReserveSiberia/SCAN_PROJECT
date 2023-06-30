@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Characters from "../../assets/images/Characters.svg";
 import lock from "../../assets/images/lock.svg";
 import Google from "../../assets/images/Google.svg";
@@ -6,19 +7,60 @@ import facebook from "../../assets/images/facebook.svg";
 import yandex from "../../assets/images/yandex.svg";
 import { Button, Container } from "react-bootstrap";
 import styles from "./Auth.module.css";
+import { logIn } from "../../api/authService";
 
 const Auth = () => {
+  const [userName, setUsersName] = useState(localStorage.getItem("User"));
+  const [password, setPassword] = useState("");
+  const [isAuth, setIsAuth] = useState(false);
+  const navigate = useNavigate();
+
+  function authControl(token, expireDate) {
+    if (token && expireDate) {
+      const now = new Date();
+      if (Date.parse(expireDate) > Date.parse(now)) {
+        localStorage.setItem("AuthStatus", true);
+        console.log("Access granted");
+        navigate("/");
+      }
+    } else {
+      localStorage.setItem("AuthStatus", false);
+      setIsAuth(localStorage.getItem("AuthStatus"));
+      localStorage.setItem("TOKEN", "");
+      localStorage.setItem("EXPIRE", "");
+      console.log("Access denied");
+      navigate("/error");
+    }
+  }
+
+  function handleAuth() {
+    localStorage.setItem("User", userName);
+    logIn(userName, password).then(() => {
+      return authControl(
+        localStorage.getItem("TOKEN"),
+        localStorage.getItem("EXPIRE")
+      );
+    });
+    // Cleaning input fields after submitting
+    setUsersName("");
+    setPassword("");
+  }
   return (
     <Container>
       <div className={styles.displayForm}>
         <div className={styles.Authorization}>
-          <h1>
-            ДЛЯ ОФОРМЛЕНИЯ ПОДПИСКИ
-            <br />
-            НА ТАРИФ, НЕОБХОДИМО
-            <br />
-            АВТОРИЗОВАТЬСЯ.
-          </h1>
+          {isAuth === 2 ? (
+            <h1>wrong data</h1>
+          ) : (
+            <h1>
+              ДЛЯ ОФОРМЛЕНИЯ ПОДПИСКИ
+              <br />
+              НА ТАРИФ, НЕОБХОДИМО
+              <br />
+              АВТОРИЗОВАТЬСЯ.
+            </h1>
+          )}
+
           <img
             className={styles.Characters}
             src={Characters}
@@ -43,7 +85,11 @@ const Auth = () => {
                       <input
                         type="text"
                         className={styles.FormControl}
-                        placeholder=""
+                        placeholder={userName}
+                        value={userName}
+                        onChange={(e) => {
+                          setUsersName(e.target.value);
+                        }}
                       />
                     </label>
                   </div>
@@ -54,10 +100,16 @@ const Auth = () => {
                         type="password"
                         className={styles.FormControl}
                         placeholder=""
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                       />
                     </label>
                   </div>
-                  <Button className={styles.btnSubmit}>Войти</Button>
+                  <Button onClick={handleAuth} className={styles.btnSubmit}>
+                    Войти
+                  </Button>
                   <div className={styles.formGroup}>
                     <a href="#" className={styles.recoverPwd}>
                       Восстановить пароль
