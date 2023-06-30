@@ -1,4 +1,6 @@
-const initialState = { menuStatus: false };
+const initialState = {
+  menuStatus: false,
+};
 
 function myReducer(state = initialState, action) {
   if (action.type === "CHANGE_MENU_STATUS") {
