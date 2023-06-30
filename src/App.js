@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/auth" element={<Auth />} />
         {/* Если пользователь не авторизован то редиректит на форму авторизации, иначе есть доступ к поиску и результатам */}
-        <Route element={!localStorage.getItem("AuthStatus") ? <Outlet /> : <Navigate to="/auth" />}>
+        <Route element={localStorage.getItem("AuthStatus") ? <Outlet /> : <Navigate to="/auth" />}>
           <Route path='/search' element={<SearchPage />} />
           <Route path='/result' element={<ResultPage data={fakeArr} />} />
         </Route>

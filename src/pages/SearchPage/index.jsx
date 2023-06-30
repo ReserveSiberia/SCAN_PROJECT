@@ -3,7 +3,7 @@ import styles from "./SearchPage.module.css";
 import DocumentImage from "../../assets/images/SearchPageImg3.svg";
 import FolderImage from "../../assets/images/SearchPageImg2.svg";
 import GroupImage from "../../assets/images/SearchPageImg1.svg";
-import { getGeneralData, getData, getDetailData } from "../../api/dataService";
+import { getGeneralData, getData, getDetailData } from "../../api/service";
 
 const SearchPage = () => {
   const [searchData, setSearchData] = useState({
