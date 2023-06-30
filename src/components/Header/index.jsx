@@ -29,10 +29,9 @@ function Header() {
 
   useEffect(() => {
     authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
-    if (isAuth) {
-      getInfoData(token);
-      console.log("nice");
-    }
+    getInfoData(token);
+    // if (isAuth) {
+    // }
     setUserName(localStorage.getItem("User"));
     setCompaniesUsed(localStorage.getItem("CompaniesUsed"));
     setCompaniesLimit(localStorage.getItem("CompaniesLimit"));
