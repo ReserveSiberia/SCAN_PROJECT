@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Characters from "../../assets/images/Characters.svg";
 import lock from "../../assets/images/lock.svg";
@@ -142,7 +142,6 @@ const Auth = () => {
         </div>
       </Container>
     </main>
-
   );
 };
 
