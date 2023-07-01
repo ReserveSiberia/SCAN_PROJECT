@@ -78,14 +78,14 @@ function Header() {
   return (
     <>
       <header className={menuStatus ? styles.headerInverted : styles.header}>
-        <div className={styles.logo}>
+        <Link to={'/'} className={styles.logo}>
           <img
             ref={logoRef}
             className={styles.imgLogo}
             src={menuStatus ? LogoInverted : Logo}
             alt="Logo"
           ></img>
-        </div>
+        </Link>
         <div>
           <nav className={styles.nav}>
             <NavBar />
