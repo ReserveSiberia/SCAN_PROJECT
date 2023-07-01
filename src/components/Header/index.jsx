@@ -33,7 +33,7 @@ function Header({ isAuth, setIsAuth }) {
     setUserName(localStorage.getItem("User"));
     setCompaniesUsed(localStorage.getItem("CompaniesUsed"));
     setCompaniesLimit(localStorage.getItem("CompaniesLimit"));
-  }, [isAuth, userName, location]);
+  }, [isAuth, userName, location, renderer]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
@@ -80,7 +80,7 @@ function Header({ isAuth, setIsAuth }) {
   return (
     <>
       <header className={menuStatus ? styles.headerInverted : styles.header}>
-        <Link to={'/'} className={styles.logo}>
+        <Link to={"/"} className={styles.logo}>
           <img
             ref={logoRef}
             className={styles.imgLogo}
