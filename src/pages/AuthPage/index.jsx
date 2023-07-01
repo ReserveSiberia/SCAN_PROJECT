@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Characters from "../../assets/images/Characters.svg";
 import lock from "../../assets/images/lock.svg";
 import Google from "../../assets/images/Google.svg";
@@ -7,6 +7,7 @@ import facebook from "../../assets/images/facebook.svg";
 import yandex from "../../assets/images/yandex.svg";
 import { Button, Container } from "react-bootstrap";
 import styles from "./Auth.module.css";
+// import store from "../../store/store.js";
 import { logIn } from "../../api/authService";
 
 const Auth = () => {
@@ -142,7 +143,6 @@ const Auth = () => {
         </div>
       </Container>
     </main>
-
   );
 };
 
