@@ -15,22 +15,14 @@ import { useEffect, useState } from "react";
 const fakeArr = [1, 2, 3, 4];
 
 function App() {
-  const [AuthStatus, setAuthStatus] = useState(false)
-  useEffect(() => {
-    if (localStorage.getItem("AuthStatus") === 'false') {
-      setAuthStatus(setAuthStatus(false))
-    } else {
-      setAuthStatus(setAuthStatus(true))
-    }
-  }, [])
+  const [isAuth, setIsAuth] = useState(false);
   return (
     <div className="App">
-      <Header />
+      <Header isAuth={isAuth} setIsAuth={setIsAuth} />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/auth" element={<Auth />} />
-        {/* Если пользователь не авторизован то редиректит на форму авторизации, иначе есть доступ к поиску и результатам */}
-        <Route element={AuthStatus ? <Outlet /> : <Navigate to="/auth" />}>
+        <Route path="/auth" element={<Auth isAuth={isAuth} setIsAuth={setIsAuth} />} />
+        <Route element={isAuth ? <Outlet /> : <Navigate to="/auth" />}>
           <Route path='/search' element={<SearchPage />} />
           <Route path='/result' element={<ResultPage data={fakeArr} />} />
         </Route>
