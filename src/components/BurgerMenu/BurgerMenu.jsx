@@ -1,16 +1,22 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./BurgerMenu.module.css";
 import NavBar from "../NavBar/NavBar.jsx";
 
 function BurgerMenu(props) {
   const burgerRef = useRef(null);
+  const navigation = useNavigate();
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
 
   function handleBurgerMenu() {
     store.dispatch({ type: "CHANGE_MENU_STATUS" });
     setMenuStatus(!menuStatus);
+  }
+
+  function enterHandler() {
+    handleBurgerMenu();
+    navigation("/auth");
   }
 
   return (
@@ -30,15 +36,19 @@ function BurgerMenu(props) {
         }
       >
         <nav className={styles.navMobile}>
-          <NavBar />
+          <NavBar handler={handleBurgerMenu} />
         </nav>
         <div className={styles.mobileAuth}>
           <Link to={"#"} className={styles.mobileRegister}>
             Зарегистрироваться
           </Link>
-          <Link className={styles.mobileEnter} to={"/auth"}>
+          <button
+            onClick={enterHandler}
+            className={styles.mobileEnter}
+            to={"/auth"}
+          >
             Войти
-          </Link>
+          </button>
         </div>
       </div>
     </>
@@ -46,4 +56,3 @@ function BurgerMenu(props) {
 }
 
 export default BurgerMenu;
-

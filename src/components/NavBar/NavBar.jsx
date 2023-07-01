@@ -1,19 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { button } from "react-router-dom";
 import styles from "./NavBar.module.css";
+import { useNavigate } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
+  const navigation = useNavigate();
+  function redirectMain() {
+    props.handler();
+    navigation("/");
+  }
   return (
     <>
-      <Link className={styles.link} to={" "}>
+      <button onClick={redirectMain} className={styles.link}>
         Главная
-      </Link>
-      <Link className={styles.link} to="#">
-        Тарифы
-      </Link>
-      <Link className={styles.link} to="#">
-        FAQ
-      </Link>
+      </button>
+      <button className={styles.link}>Тарифы</button>
+      <button className={styles.link}>FAQ</button>
     </>
   );
 }
