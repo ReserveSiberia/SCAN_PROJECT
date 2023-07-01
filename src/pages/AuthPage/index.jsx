@@ -21,7 +21,6 @@ const Auth = ({ isAuth, setIsAuth }) => {
       if (Date.parse(expireDate) > Date.parse(now)) {
         localStorage.setItem("AuthStatus", true);
         setIsAuth(true);
-        console.log("Access granted");
         navigate("/");
       }
     } else {
@@ -29,7 +28,6 @@ const Auth = ({ isAuth, setIsAuth }) => {
       setIsAuth(false);
       localStorage.setItem("TOKEN", "");
       localStorage.setItem("EXPIRE", "");
-      console.log("Access denied");
       navigate("/error");
     }
   }
@@ -48,7 +46,6 @@ const Auth = ({ isAuth, setIsAuth }) => {
   }
   return (
     <main>
-
       <Container>
         <div className={styles.displayForm}>
           <div className={styles.Authorization}>

@@ -28,12 +28,13 @@ function Header({ isAuth, setIsAuth }) {
   const navigation = useNavigate();
 
   useEffect(() => {
+    setUserName(localStorage.getItem("User"));
     authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
     getInfoData(token);
     setUserName(localStorage.getItem("User"));
     setCompaniesUsed(localStorage.getItem("CompaniesUsed"));
     setCompaniesLimit(localStorage.getItem("CompaniesLimit"));
-  }, [isAuth, userName, location, renderer]);
+  }, [isAuth, userName, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
@@ -41,14 +42,12 @@ function Header({ isAuth, setIsAuth }) {
       if (Date.parse(expireDate) > Date.parse(now)) {
         localStorage.setItem("AuthStatus", true);
         setIsAuth(true);
-        console.log("Access granted");
       }
     } else {
       localStorage.setItem("AuthStatus", false);
       setIsAuth(false);
       localStorage.setItem("TOKEN", "");
       localStorage.setItem("EXPIRE", "");
-      console.log("Access denied");
     }
   }
 
@@ -57,7 +56,6 @@ function Header({ isAuth, setIsAuth }) {
       .then((res) => {
         localStorage.setItem("CompaniesUsed", res.usedCompanyCount);
         localStorage.setItem("CompaniesLimit", res.companyLimit);
-        setRenderer(!renderer);
       })
       .catch((e) => {
         console.log("Impossible to receive account data :", e);
