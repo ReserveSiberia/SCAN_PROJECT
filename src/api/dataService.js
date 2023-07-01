@@ -7,7 +7,7 @@ async function getGeneralData(searchParametrs) {
     url: GENERAL_DATA_URL,
     method: "post",
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJhOTBlNmE4Yi1jZTgyLWVkMTEtODI3NS04NzJjODBhZjI3NTMiLCJuYmYiOjE2ODgwOTczOTksImV4cCI6MTY4ODE4Mzc5OSwiaXNzIjoiU2NhbkdhdGV3YXkiLCJhdWQiOiJzZl9zdHVkZW50NyJ9.Tb0pSDKoSqkn1R2Zvdg3Ykibzj1njYhOTeBQq79X8ZY",
+      Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
     },
     data: {
       "issueDateInterval": {
@@ -70,7 +70,8 @@ async function getGeneralData(searchParametrs) {
   }).then((res) => {
     //localStorage.setItem("TOKEN", res.data.accessToken);
     //localStorage.setItem("EXPIRE", res.data.expire);
-    console.log(res.data);
+    // console.log(res.data);
+    return res
   });
 }
 

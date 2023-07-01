@@ -3,31 +3,14 @@ import { ResultItem } from '../../components/ResultItem'
 import { ResultSlider } from '../../components/ResultSlider'
 import ResultPageImg from '../../assets/images/ResultPageImg.svg'
 import { mapArrFunc } from '../../utils/mapArrFunc'
+import { useEffect, useContext, useState } from 'react'
+import ResultContext from '../../context/resultContext'
+
 
 // Когда придут данные по запросу рендерим данный компонент и передаем в него данные.
-function ResultPage({ data }) {
-  const fakeArr = [
-    {
-      data: [{
-        date: "2020-11-01T03:00:00+03:00",
-        value: 0
-      }, {
-        date: "2020-06-01T03:00:00+03:00",
-        value: 1
-      }],
-      histogramType: "riskFactors"
-    },
-    {
-      data: [{
-        date: "2020-11-01T03:00:00+03:00",
-        value: 8
-      }, {
-        date: "2020-06-01T03:00:00+03:00",
-        value: 6
-      }],
-      histogramType: "totalDocuments"
-    },
-  ]
+function ResultPage() {
+  const context = useContext(ResultContext)
+  const result = context.generalData
   return (
     <main className={styles.resultPage}>
       <div className={styles.soonResult}>
@@ -39,13 +22,13 @@ function ResultPage({ data }) {
       </div>
       <div className={styles.summaryBlock}>
         <h2 className={styles.subtitle}>Общая сводка</h2>
-        <p className={styles.dataSum}>Найдено {mapArrFunc(fakeArr).length} вариантов</p>
-        <ResultSlider data={fakeArr} />
+        <p className={styles.dataSum}>Найдено {mapArrFunc(result.data.data).length} вариантов</p>
+        <ResultSlider data={!result.data.data ? [] : result.data.data} />
       </div>
       <div className={styles.resultBlock}>
         <h2 className={styles.subtitle}>Список документов</h2>
         <ul className={styles.resultList}>
-          {data ? data.map(item => <ResultItem data={[1, 2, 3, 4]} />) : <p>Результаты отсутствуют</p>}
+          {[1, 2, 3, 4] ? [1, 2, 3, 4].map(item => <ResultItem data={[1, 2, 3, 4]} />) : <p>Результаты отсутствуют</p>}
         </ul>
         <button className={styles.seeMoreBtn}>Показать больше</button>
       </div>

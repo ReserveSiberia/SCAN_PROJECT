@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./SearchPage.module.css";
 import DocumentImage from "../../assets/images/SearchPageImg3.svg";
 import FolderImage from "../../assets/images/SearchPageImg2.svg";
 import GroupImage from "../../assets/images/SearchPageImg1.svg";
 import { getGeneralData, getData, getDetailData } from "../../api/dataService";
+import { useNavigate } from "react-router-dom";
+import ResultContext from "../../context/resultContext";
+
 
 const SearchPage = () => {
+  const navigate = useNavigate();
+  const context = useContext(ResultContext)
+
   const [searchData, setSearchData] = useState({
     inn: "",
     completeness: false,
@@ -29,12 +35,9 @@ const SearchPage = () => {
     });
   };
 
-  const handleSearch = () => {
-    return console.log(
-      getGeneralData(searchData),
-      getData(searchData),
-      getDetailData()
-    );
+  const handleSearch = async () => {
+    context.setGeneralData(await getGeneralData(searchData))
+    navigate('/result')
   };
 
   const isFormValid = () => {
@@ -49,6 +52,7 @@ const SearchPage = () => {
   };
 
   return (
+
     <main className={styles.searchPage}>
       <div className={styles.container}>
         <h1 className={styles.title}>
@@ -252,6 +256,8 @@ const SearchPage = () => {
       </div>
 
     </main>
+
+
   );
 };
 

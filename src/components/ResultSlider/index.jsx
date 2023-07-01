@@ -6,7 +6,7 @@ import { mapArrFunc } from '../../utils/mapArrFunc'
 function ResultSlider({ data }) {
   const dataListRef = useRef(null)
   const mappingData = mapArrFunc(data)
-
+  console.log(mappingData)
   const slideLeft = () => {
     dataListRef.current.scrollLeft += 133
 
@@ -32,13 +32,13 @@ function ResultSlider({ data }) {
           <div>Риски</div>
         </div>
         <ul ref={dataListRef} className={styles.dataList}>
-          <li className={styles.dataItem}>
+          {/* <li className={styles.dataItem}>
             <div>10.09.2021</div>
             <div>5</div>
             <div>0</div>
-          </li>
+          </li> */}
 
-          {/* {mappingData.map(item => {
+          {mappingData.map(item => {
             return (
               <li className={styles.dataItem}>
                 <div>{item.date}</div>
@@ -46,7 +46,7 @@ function ResultSlider({ data }) {
                 <div>{item.riskValue}</div>
               </li>
             )
-          })} */}
+          })}
         </ul>
       </div>
       <button onClick={slideRight} className={styles.controller + " " + styles.controllerRight} type='button'><img src={chevron} /></button>
