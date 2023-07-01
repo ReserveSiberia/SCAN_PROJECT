@@ -29,11 +29,11 @@ function Header({ isAuth, setIsAuth }) {
   useEffect(() => {
     setUserName(localStorage.getItem("User"));
     authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
-    getInfoData(token);
+    if (isAuth) {
+      getInfoData(token);
+    }
     setUserName(localStorage.getItem("User"));
-    setCompaniesUsed(localStorage.getItem("CompaniesUsed"));
-    setCompaniesLimit(localStorage.getItem("CompaniesLimit"));
-  }, [isAuth, userName, location]);
+  }, [userName, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
@@ -65,6 +65,9 @@ function Header({ isAuth, setIsAuth }) {
     localStorage.setItem("TOKEN", "");
     localStorage.setItem("EXPIRE", "");
     localStorage.setItem("AuthStatus", false);
+    localStorage.setItem("CompaniesUsed", "");
+    localStorage.setItem("CompaniesLimit", "");
+    console.log("logging out");
     setIsAuth(false);
   }
   function redirectMain() {
@@ -111,7 +114,7 @@ function Header({ isAuth, setIsAuth }) {
           </div>
         ) : (
           <div className={styles.authData}>
-            {companiesUsed != null && companiesLimit != null ? (
+            {companiesUsed && companiesLimit ? (
               <div
                 className={
                   menuStatus ? styles.requestsInfoHidden : styles.requestsInfo
