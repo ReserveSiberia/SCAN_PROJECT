@@ -10,8 +10,7 @@ import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../../components/Loader/Loader.jsx";
 import { accountInfo } from "../../api/authService";
 
-function Header() {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("AuthStatus"));
+function Header({ isAuth, setIsAuth }) {
   const [companiesUsed, setCompaniesUsed] = useState(
     localStorage.getItem("CompaniesUsed")
   );
