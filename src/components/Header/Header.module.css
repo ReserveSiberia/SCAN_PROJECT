@@ -40,6 +40,10 @@
     width: 236px;
 }
 
+.nav button {
+    color: var(--main-color-2)
+}
+
 .auth {
     display: flex;
     flex-direction: row;
@@ -190,7 +194,6 @@
 
     .auth {
         display: none;
-        /* margin: 1px 20px 1px 0; */
     }
 
     .logo {

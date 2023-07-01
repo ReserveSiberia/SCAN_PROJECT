@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./Header.module.css";
 import BurgerMenu from "../../components/BurgerMenu/BurgerMenu.jsx";
@@ -26,6 +26,7 @@ function Header() {
   const [renderer, setRenderer] = useState(false);
   const logoRef = useRef(null);
   const location = useLocation();
+  const navigation = useNavigate();
 
   useEffect(() => {
     authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
@@ -70,7 +71,9 @@ function Header() {
     localStorage.setItem("AuthStatus", false);
     setIsAuth(false);
   }
-
+  function redirectMain() {
+    navigation("/");
+  }
   store.subscribe(() => {
     setMenuStatus(store.getState().menuStatus);
   });
@@ -88,7 +91,11 @@ function Header() {
         </div>
         <div>
           <nav className={styles.nav}>
-            <NavBar />
+            <button onClick={redirectMain} className={styles.link}>
+              Главная
+            </button>
+            <button className={styles.link}>Тарифы</button>
+            <button className={styles.link}>FAQ</button>
           </nav>
         </div>
         {!isAuth ? (
