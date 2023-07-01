@@ -22,7 +22,6 @@ function Header({ isAuth, setIsAuth }) {
   const [userAvatar, setUsersAvatar] = useState(Photo);
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
   const [token, setToken] = useState(localStorage.getItem("TOKEN"));
-  const [renderer, setRenderer] = useState(false);
   const logoRef = useRef(null);
   const location = useLocation();
   const navigation = useNavigate();

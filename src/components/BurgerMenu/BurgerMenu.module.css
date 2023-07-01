@@ -54,6 +54,7 @@
 
 .menuButtonOpened div:nth-child(1) {
     top: 12px;
+    left: 8px;
     transform: rotate(135deg);
 }
 
@@ -64,6 +65,7 @@
 
 .menuButtonOpened div:nth-child(3) {
     top: 12px;
+    left: 8px;
     transform: rotate(-135deg);
 }
 
