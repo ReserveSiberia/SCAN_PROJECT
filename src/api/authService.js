@@ -34,6 +34,7 @@ async function accountInfo(token) {
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => {
+      console.log("Getting account info...", res);
       return res.data.eventFiltersInfo;
     });
   } catch (error) {
