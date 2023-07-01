@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Characters from "../../assets/images/Characters.svg";
 import lock from "../../assets/images/lock.svg";
 import Google from "../../assets/images/Google.svg";
@@ -10,23 +10,23 @@ import styles from "./Auth.module.css";
 // import store from "../../store/store.js";
 import { logIn } from "../../api/authService";
 
-const Auth = () => {
+const Auth = ({ isAuth, setIsAuth }) => {
   const [userName, setUsersName] = useState(localStorage.getItem("User"));
   const [password, setPassword] = useState("");
-  const [isAuth, setIsAuth] = useState(false);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   function authControl(token, expireDate) {
     if (token && expireDate) {
       const now = new Date();
       if (Date.parse(expireDate) > Date.parse(now)) {
         localStorage.setItem("AuthStatus", true);
+        setIsAuth(true);
         console.log("Access granted");
         navigate("/");
       }
     } else {
       localStorage.setItem("AuthStatus", false);
-      setIsAuth(localStorage.getItem("AuthStatus"));
+      setIsAuth(false);
       localStorage.setItem("TOKEN", "");
       localStorage.setItem("EXPIRE", "");
       console.log("Access denied");
@@ -48,6 +48,7 @@ const Auth = () => {
   }
   return (
     <main>
+
       <Container>
         <div className={styles.displayForm}>
           <div className={styles.Authorization}>

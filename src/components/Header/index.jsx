@@ -10,8 +10,7 @@ import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../../components/Loader/Loader.jsx";
 import { accountInfo } from "../../api/authService";
 
-function Header() {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("AuthStatus"));
+function Header({ isAuth, setIsAuth }) {
   const [companiesUsed, setCompaniesUsed] = useState(
     localStorage.getItem("CompaniesUsed")
   );
@@ -81,14 +80,14 @@ function Header() {
   return (
     <>
       <header className={menuStatus ? styles.headerInverted : styles.header}>
-        <div className={styles.logo}>
+        <Link to={'/'} className={styles.logo}>
           <img
             ref={logoRef}
             className={styles.imgLogo}
             src={menuStatus ? LogoInverted : Logo}
             alt="Logo"
           ></img>
-        </div>
+        </Link>
         <div>
           <nav className={styles.nav}>
             <button onClick={redirectMain} className={styles.link}>
