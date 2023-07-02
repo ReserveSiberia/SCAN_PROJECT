@@ -219,6 +219,7 @@
     }
 
     .info {
+        width: 95%;
         text-align: left;
         padding-left: 10px;
     }

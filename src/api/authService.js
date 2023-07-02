@@ -15,13 +15,15 @@ async function logIn(userName, password) {
     },
   })
     .then((res) => {
+      console.log("Setting up Token...");
       localStorage.setItem("TOKEN", res.data.accessToken);
       localStorage.setItem("EXPIRE", res.data.expire);
       return res.data.accessToken;
     })
     .catch((e) => {
-      console.log(e);
-    });
+      console.log("Authorization issues...", e);
+    })
+    .finally(console.log("Successful logging in..."));
 }
 
 async function accountInfo(token) {
@@ -33,10 +35,12 @@ async function accountInfo(token) {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => {
-      console.log("Getting account info...", res);
-      return res.data.eventFiltersInfo;
-    });
+    })
+      .then((res) => {
+        console.log("Getting account info...");
+        return res.data.eventFiltersInfo;
+      })
+      .catch((e) => console.log("Receiving data is failed..."));
   } catch (error) {
     console.log("Account error details", error);
   }

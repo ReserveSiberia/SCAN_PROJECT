@@ -67,7 +67,7 @@ function Header({ isAuth, setIsAuth }) {
     localStorage.setItem("AuthStatus", false);
     localStorage.setItem("CompaniesUsed", "");
     localStorage.setItem("CompaniesLimit", "");
-    console.log("logging out");
+    console.log("Logging out...");
     setIsAuth(false);
   }
   function redirectMain() {

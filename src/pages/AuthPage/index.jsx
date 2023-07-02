@@ -28,8 +28,8 @@ const Auth = ({ isAuth, setIsAuth }) => {
       setIsAuth(false);
       localStorage.setItem("TOKEN", "");
       localStorage.setItem("EXPIRE", "");
-      localStorage.setItem("CompaniesUsed", null);
-      localStorage.setItem("CompaniesLimit", null);
+      localStorage.setItem("CompaniesUsed", "");
+      localStorage.setItem("CompaniesLimit", "");
       navigate("/error");
     }
   }

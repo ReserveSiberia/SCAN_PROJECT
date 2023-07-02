@@ -21,13 +21,13 @@ function BurgerMenu(props) {
     navigation("/auth");
   }
   function exitHandler() {
+    setAuthStatus(false);
     localStorage.setItem("TOKEN", "");
     localStorage.setItem("EXPIRE", "");
     localStorage.setItem("AuthStatus", false);
     localStorage.setItem("CompaniesUsed", "");
     localStorage.setItem("CompaniesLimit", "");
-    setAuthStatus(false);
-    console.log("logging out");
+    console.log("Logging out...");
     handleBurgerMenu();
     navigation("/");
   }
