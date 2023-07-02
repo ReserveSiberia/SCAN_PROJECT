@@ -18,7 +18,6 @@ function Header({ isAuth, setIsAuth }) {
     localStorage.getItem("CompaniesLimit")
   );
   const [userName, setUserName] = useState(localStorage.getItem("User"));
-  // temporary solution (photo goes from server url???)
   const [userAvatar, setUsersAvatar] = useState(Photo);
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
   const [token, setToken] = useState(localStorage.getItem("TOKEN"));
@@ -27,13 +26,15 @@ function Header({ isAuth, setIsAuth }) {
   const navigation = useNavigate();
 
   useEffect(() => {
+    setToken(localStorage.getItem("TOKEN"));
     setUserName(localStorage.getItem("User"));
     authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
     if (isAuth) {
       getInfoData(token);
+      console.log("Got account data...");
     }
     setUserName(localStorage.getItem("User"));
-  }, [isAuth, userName, location]);
+  }, [isAuth, setIsAuth, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
@@ -57,8 +58,6 @@ function Header({ isAuth, setIsAuth }) {
         localStorage.setItem("CompaniesLimit", res.companyLimit);
         setCompaniesUsed(res.usedCompanyCount);
         setCompaniesLimit(res.companyLimit);
-        console.log(companiesUsed);
-        console.log(companiesLimit);
       })
       .catch((e) => {
         console.log("Impossible to receive account data :", e);

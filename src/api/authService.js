@@ -23,27 +23,22 @@ async function logIn(userName, password) {
     .catch((e) => {
       console.log("Authorization issues...", e);
     })
-    .finally(console.log("Successful logging in..."));
+    .finally(console.log("Successfully logged in..."));
 }
 
 async function accountInfo(token) {
-  try {
-    return await axios({
-      baseURL: BASE_URL,
-      url: LOGIN_INFO_URL,
-      method: "get",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+  return await axios({
+    baseURL: BASE_URL,
+    url: LOGIN_INFO_URL,
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      return res.data.eventFiltersInfo;
     })
-      .then((res) => {
-        console.log("Getting account info...");
-        return res.data.eventFiltersInfo;
-      })
-      .catch((e) => console.log("Failed receiving data..."));
-  } catch (error) {
-    console.log("Account error details", error);
-  }
+    .catch((e) => console.log("Failed receiving data..."));
 }
 
 export { logIn, accountInfo };
