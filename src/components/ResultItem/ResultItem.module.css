@@ -41,20 +41,6 @@
   margin-top: 24px;
 }
 
-.cardCategory {
-  display: inline-block;
-
-  font-family: 'inter-regular';
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  color: #000000;
-  padding: 4px 13px;
-  border-radius: 5px;
-  background-color: var(--second-color-1);
-  margin-top: 14px;
-}
-
 .cardText {
   margin-top: 20px;
 }

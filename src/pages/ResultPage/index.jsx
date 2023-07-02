@@ -6,6 +6,7 @@ import { mapArrFunc } from '../../utils/mapArrFunc'
 import { useContext, useEffect, useState } from 'react'
 import ResultContext from '../../context/createContext'
 import { getDetailData } from '../../api/dataService'
+import { GeneralResultLoader } from '../../components/GeneralResultLoader'
 
 function ResultPage() {
   const context = useContext(ResultContext)
@@ -18,11 +19,17 @@ function ResultPage() {
   const setDetailsData = context.setDetailsData
 
   useEffect(() => {
-    console.log('hello useEff')
-    if (resultData) {
+    if (resultData && (+resultData.data.items.length) > 0) {
       const arrForRequest = []
-      for (let i = 0; i < countDocs; i++) {
-        arrForRequest.push(resultData.data.items[i].encodedId)
+
+      if ((+resultData.data.items.length) < countDocs) {
+        for (let i = 0; i < (+resultData.data.items.length); i++) {
+          arrForRequest.push(resultData.data.items[i].encodedId)
+        }
+      } else {
+        for (let i = 0; i < countDocs; i++) {
+          arrForRequest.push(resultData.data.items[i].encodedId)
+        }
       }
       const req = async () => {
         setDetailsData(await getDetailData(arrForRequest))
@@ -43,8 +50,6 @@ function ResultPage() {
       setCountDocs(countDocs + docsRest)
     }
   }
-
-  console.log(detailsData)
 
   return (
     <main className={styles.resultPage}>
@@ -69,7 +74,11 @@ function ResultPage() {
       <div className={styles.resultBlock}>
         <h2 className={styles.subtitle}>Список документов</h2>
         <ul className={styles.resultList}>
-          {[1, 2, 3, 4] ? [1, 2, 3, 4].map(item => <ResultItem data={[1, 2, 3, 4]} />) : <p>Результаты отсутствуют</p>}
+          {!resultData || +resultData.data.items.length === 0
+            ? <p></p>
+            : !detailsData
+              ? <GeneralResultLoader />
+              : detailsData.data.map(item => <ResultItem key={item.ok.id} data={item.ok} />)}
         </ul>
         <button onClick={moreBtnHandler} className={resultData && ((countDocs) >= +resultData.data.items.length) ? styles.seeMoreBtnHidden : styles.seeMoreBtn}>Показать больше</button>
       </div>

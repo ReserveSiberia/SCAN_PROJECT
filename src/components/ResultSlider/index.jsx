@@ -34,9 +34,9 @@ function ResultSlider({ data, isLoading }) {
         <ul ref={dataListRef} className={styles.dataList}>
           {isLoading
             ? <GeneralResultLoader />
-            : mappingData.map(item => {
+            : mappingData.map((item, index) => {
               return (
-                <li className={styles.dataItem}>
+                <li key={index} className={styles.dataItem}>
                   <div>{item.date}</div>
                   <div>{item.totalValue}</div>
                   <div>{item.riskValue}</div>
