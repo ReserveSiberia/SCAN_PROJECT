@@ -5,7 +5,7 @@ import FolderImage from "../../assets/images/SearchPageImg2.svg";
 import GroupImage from "../../assets/images/SearchPageImg1.svg";
 import { getGeneralData, getData, getDetailData } from "../../api/dataService";
 import { useNavigate } from "react-router-dom";
-import ResultContext from "../../context/resultContext";
+import ResultContext from "../../context/createContext";
 
 
 const SearchPage = () => {
@@ -36,8 +36,8 @@ const SearchPage = () => {
   };
 
   const handleSearch = async () => {
-    context.setGeneralData(await getGeneralData(searchData))
     navigate('/result')
+    context.setGeneralData(await getGeneralData(searchData))
   };
 
   const isFormValid = () => {

@@ -2,8 +2,9 @@ import styles from './ResultSlider.module.css'
 import chevron from '../../assets/images/chevron.png'
 import { useRef } from 'react'
 import { mapArrFunc } from '../../utils/mapArrFunc'
+import { GeneralResultLoader } from '../GeneralResultLoader'
 
-function ResultSlider({ data }) {
+function ResultSlider({ data, isLoading }) {
   const dataListRef = useRef(null)
   const mappingData = mapArrFunc(data)
   const slideLeft = () => {
@@ -31,21 +32,17 @@ function ResultSlider({ data }) {
           <div>Риски</div>
         </div>
         <ul ref={dataListRef} className={styles.dataList}>
-          {/* <li className={styles.dataItem}>
-            <div>10.09.2021</div>
-            <div>5</div>
-            <div>0</div>
-          </li> */}
-
-          {mappingData.map(item => {
-            return (
-              <li className={styles.dataItem}>
-                <div>{item.date}</div>
-                <div>{item.totalValue}</div>
-                <div>{item.riskValue}</div>
-              </li>
-            )
-          })}
+          {isLoading
+            ? <GeneralResultLoader />
+            : mappingData.map(item => {
+              return (
+                <li className={styles.dataItem}>
+                  <div>{item.date}</div>
+                  <div>{item.totalValue}</div>
+                  <div>{item.riskValue}</div>
+                </li>
+              )
+            })}
         </ul>
       </div>
       <button onClick={slideRight} className={styles.controller + " " + styles.controllerRight} type='button'><img src={chevron} /></button>

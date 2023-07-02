@@ -1,8 +1,8 @@
-import ResultContext from './resultContext.js';
+import ResultContext from './createContext.js';
 import { useState } from 'react';
 
 const ResultProvider = ({ children }) => {
-  const [generalData, setGeneralData] = useState({})
+  const [generalData, setGeneralData] = useState(null)
   return (
     <ResultContext.Provider value={{ generalData, setGeneralData }}>
       {children}

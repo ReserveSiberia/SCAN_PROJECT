@@ -3,13 +3,13 @@ import { ResultItem } from '../../components/ResultItem'
 import { ResultSlider } from '../../components/ResultSlider'
 import ResultPageImg from '../../assets/images/ResultPageImg.svg'
 import { mapArrFunc } from '../../utils/mapArrFunc'
-import { useEffect, useContext, useState } from 'react'
-import ResultContext from '../../context/resultContext'
+import { useContext } from 'react'
+import ResultContext from '../../context/createContext'
 
 function ResultPage() {
   const context = useContext(ResultContext)
   const result = context.generalData
-  console.log(result)
+
   return (
     <main className={styles.resultPage}>
       <div className={styles.soonResult}>
@@ -21,8 +21,14 @@ function ResultPage() {
       </div>
       <div className={styles.summaryBlock}>
         <h2 className={styles.subtitle}>Общая сводка</h2>
-        <p className={styles.dataSum}>Найдено {mapArrFunc(result.data.data).length} вариантов</p>
-        <ResultSlider data={!result.data.data ? [] : result.data.data} />
+        <p className={styles.dataSum}>Найдено
+          {!result
+            ? ` 0`
+            : ` ${mapArrFunc(result.data.data).length}`} вариантов
+        </p>
+        {<ResultSlider isLoading={!result} data={!result
+          ? []
+          : result.data.data} />}
       </div>
       <div className={styles.resultBlock}>
         <h2 className={styles.subtitle}>Список документов</h2>
