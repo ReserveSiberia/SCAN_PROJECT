@@ -33,7 +33,7 @@ function Header({ isAuth, setIsAuth }) {
       getInfoData(token);
     }
     setUserName(localStorage.getItem("User"));
-  }, [userName, location]);
+  }, [, isAuth, userName, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
