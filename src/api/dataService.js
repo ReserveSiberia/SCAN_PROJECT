@@ -68,9 +68,6 @@ async function getGeneralData(searchParametrs) {
       ]
     },
   }).then((res) => {
-    //localStorage.setItem("TOKEN", res.data.accessToken);
-    //localStorage.setItem("EXPIRE", res.data.expire);
-    // console.log(res.data);
     return res
   });
 }
@@ -81,7 +78,7 @@ async function getData(searchParametrs) {
     url: DATA_URL,
     method: "post",
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJhOTBlNmE4Yi1jZTgyLWVkMTEtODI3NS04NzJjODBhZjI3NTMiLCJuYmYiOjE2ODgwOTczOTksImV4cCI6MTY4ODE4Mzc5OSwiaXNzIjoiU2NhbkdhdGV3YXkiLCJhdWQiOiJzZl9zdHVkZW50NyJ9.Tb0pSDKoSqkn1R2Zvdg3Ykibzj1njYhOTeBQq79X8ZY",
+      Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
     },
     data: {
       "issueDateInterval": {
@@ -142,27 +139,23 @@ async function getData(searchParametrs) {
       ]
     },
   }).then((res) => {
-    //localStorage.setItem("TOKEN", res.data.accessToken);
-    //localStorage.setItem("EXPIRE", res.data.expire);
-    console.log(res.data);
+    return res;
   });
 }
 
-async function getDetailData() {
+async function getDetailData(arrForRequest) {
   return await axios({
     baseURL: BASE_URL,
     url: DATA_DETAILS_URL,
     method: "post",
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJhOTBlNmE4Yi1jZTgyLWVkMTEtODI3NS04NzJjODBhZjI3NTMiLCJuYmYiOjE2ODgwOTczOTksImV4cCI6MTY4ODE4Mzc5OSwiaXNzIjoiU2NhbkdhdGV3YXkiLCJhdWQiOiJzZl9zdHVkZW50NyJ9.Tb0pSDKoSqkn1R2Zvdg3Ykibzj1njYhOTeBQq79X8ZY",
+      Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
     },
     data: {
-      "ids": ["1:0JPQqdGM0JNWCdCzf2Jt0LHQotGV0ZUh0ZbRlBXCt0Je0JHQruKAnDcUXkZQ0YvQscKnehLRnNC1KtGK0Ll9BWLigLo/HXXCrhw="]
+      "ids": arrForRequest
     },
   }).then((res) => {
-    //localStorage.setItem("TOKEN", res.data.accessToken);
-    //localStorage.setItem("EXPIRE", res.data.expire);
-    console.log(res.data);
+    return res
   });
 }
 

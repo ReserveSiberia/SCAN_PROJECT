@@ -38,6 +38,7 @@ const SearchPage = () => {
   const handleSearch = async () => {
     navigate('/result')
     context.setGeneralData(await getGeneralData(searchData))
+    context.setData(await getData(searchData))
   };
 
   const isFormValid = () => {

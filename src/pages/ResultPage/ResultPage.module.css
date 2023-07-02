@@ -93,6 +93,10 @@
   transition: background-color ease-in-out 0.2s;
 }
 
+.seeMoreBtnHidden {
+  display: none;
+}
+
 @media (max-width: 1140px) {
   .resultPage {
     max-width: 550px;
