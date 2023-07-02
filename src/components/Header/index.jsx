@@ -118,7 +118,7 @@ function Header({ isAuth, setIsAuth }) {
           </div>
         ) : (
           <div className={styles.authData}>
-            {companiesUsed !== "" && companiesLimit !== "" ? (
+            {companiesLimit ? (
               <div
                 className={
                   menuStatus ? styles.requestsInfoHidden : styles.requestsInfo
