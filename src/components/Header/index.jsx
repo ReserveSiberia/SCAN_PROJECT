@@ -33,7 +33,7 @@ function Header({ isAuth, setIsAuth }) {
       getInfoData(token);
     }
     setUserName(localStorage.getItem("User"));
-  }, [, isAuth, userName, location]);
+  }, [isAuth, userName, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
@@ -55,6 +55,10 @@ function Header({ isAuth, setIsAuth }) {
       .then((res) => {
         localStorage.setItem("CompaniesUsed", res.usedCompanyCount);
         localStorage.setItem("CompaniesLimit", res.companyLimit);
+        setCompaniesUsed(res.usedCompanyCount);
+        setCompaniesLimit(res.companyLimit);
+        console.log(companiesUsed);
+        console.log(companiesLimit);
       })
       .catch((e) => {
         console.log("Impossible to receive account data :", e);
@@ -114,7 +118,7 @@ function Header({ isAuth, setIsAuth }) {
           </div>
         ) : (
           <div className={styles.authData}>
-            {companiesUsed && companiesLimit ? (
+            {companiesUsed !== "" && companiesLimit !== "" ? (
               <div
                 className={
                   menuStatus ? styles.requestsInfoHidden : styles.requestsInfo

@@ -40,7 +40,7 @@ async function accountInfo(token) {
         console.log("Getting account info...");
         return res.data.eventFiltersInfo;
       })
-      .catch((e) => console.log("Receiving data is failed..."));
+      .catch((e) => console.log("Failed receiving data..."));
   } catch (error) {
     console.log("Account error details", error);
   }
