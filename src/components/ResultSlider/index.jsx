@@ -6,19 +6,18 @@ import { mapArrFunc } from '../../utils/mapArrFunc'
 function ResultSlider({ data }) {
   const dataListRef = useRef(null)
   const mappingData = mapArrFunc(data)
-  console.log(mappingData)
   const slideLeft = () => {
-    dataListRef.current.scrollLeft += 133
+    dataListRef.current.scrollLeft -= 133
 
     if (window.innerWidth <= 600) {
-      dataListRef.current.scrollLeft += 298
+      dataListRef.current.scrollLeft -= 298
     }
   }
 
   const slideRight = () => {
-    dataListRef.current.scrollLeft -= 133
+    dataListRef.current.scrollLeft += 133
     if (window.innerWidth <= 600) {
-      dataListRef.current.scrollLeft -= 298
+      dataListRef.current.scrollLeft += 298
     }
   }
 

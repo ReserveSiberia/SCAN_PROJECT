@@ -1,3 +1,5 @@
+import { parseDate } from './parseDate'
+
 export const mapArrFunc = (arr) => {
   const resArr = []
   if (!arr || !arr.length) {
@@ -6,7 +8,7 @@ export const mapArrFunc = (arr) => {
     if (arr[0].histogramType === "totalDocuments") {
       arr[0].data.forEach(dataItem => {
         resArr.push({
-          date: dataItem.date,
+          date: parseDate(dataItem.date),
           totalValue: dataItem.value,
           riskValue: 0
         })
@@ -21,7 +23,7 @@ export const mapArrFunc = (arr) => {
     if (arr[0].histogramType === "riskFactors") {
       arr[0].data.forEach(dataItem => {
         resArr.push({
-          date: dataItem.date,
+          date: parseDate(dataItem.date),
           totalValue: 0,
           riskValue: dataItem.value
         })

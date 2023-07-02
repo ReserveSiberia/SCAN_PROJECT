@@ -6,11 +6,10 @@ import { mapArrFunc } from '../../utils/mapArrFunc'
 import { useEffect, useContext, useState } from 'react'
 import ResultContext from '../../context/resultContext'
 
-
-// Когда придут данные по запросу рендерим данный компонент и передаем в него данные.
 function ResultPage() {
   const context = useContext(ResultContext)
   const result = context.generalData
+  console.log(result)
   return (
     <main className={styles.resultPage}>
       <div className={styles.soonResult}>
