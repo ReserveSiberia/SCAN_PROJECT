@@ -111,7 +111,6 @@ const SearchPage = () => {
                 <h1>Диапозон поиска*</h1>
                 <div className={styles.data}>
                   <label
-                    htmlFor="startDate"
                     className={styles.left_label}
                   ></label>
                   <input
@@ -125,7 +124,7 @@ const SearchPage = () => {
                     className={styles.left_input}
                   />
                   <div className={styles.date_separator}></div>
-                  <label htmlFor="endDate" className={styles.left_label}></label>
+                  <label className={styles.left_label}></label>
                   <input
                     placeholder="Дата конца"
                     type="date"
@@ -189,8 +188,8 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                  <label htmlFor="riskFactorss" for="riskFactors" className={styles.label}>
-                    Публикации только с риск-факторами{" "}
+                  <label htmlFor="riskFactors" className={styles.label}>
+                    В Публикации только c риск-факторами
                   </label>
                 </div>
                 <div className={styles.checkbox}>
