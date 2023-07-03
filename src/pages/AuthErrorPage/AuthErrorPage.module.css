@@ -6,10 +6,9 @@
     width: 92%;
     height: 65vh;
     margin: 20px 50px;
-}
+    font-family: 'ferry';
+    font-size: 48px;
 
-.errormessage {
-    font-size: 60px;
 }
 
 .returnButton {

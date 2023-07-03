@@ -15,31 +15,30 @@ async function logIn(userName, password) {
     },
   })
     .then((res) => {
+      console.log("Setting up Token...");
       localStorage.setItem("TOKEN", res.data.accessToken);
       localStorage.setItem("EXPIRE", res.data.expire);
       return res.data.accessToken;
     })
     .catch((e) => {
-      console.log(e);
-    });
+      console.log("Authorization issues...", e);
+    })
+    .finally(console.log("Successfully logged in..."));
 }
 
 async function accountInfo(token) {
-  try {
-    return await axios({
-      baseURL: BASE_URL,
-      url: LOGIN_INFO_URL,
-      method: "get",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      console.log("getting account info");
+  return await axios({
+    baseURL: BASE_URL,
+    url: LOGIN_INFO_URL,
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
       return res.data.eventFiltersInfo;
-    });
-  } catch (error) {
-    console.log("Account error details", error);
-  }
+    })
+    .catch((e) => console.log("Failed receiving data..."));
 }
 
 export { logIn, accountInfo };

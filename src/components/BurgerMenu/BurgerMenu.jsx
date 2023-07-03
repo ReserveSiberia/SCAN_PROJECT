@@ -8,7 +8,9 @@ function BurgerMenu(props) {
   const burgerRef = useRef(null);
   const navigation = useNavigate();
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
-
+  const [authStatus, setAuthStatus] = useState(
+    localStorage.getItem("AuthStatus")
+  );
   function handleBurgerMenu() {
     store.dispatch({ type: "CHANGE_MENU_STATUS" });
     setMenuStatus(!menuStatus);
@@ -18,7 +20,17 @@ function BurgerMenu(props) {
     handleBurgerMenu();
     navigation("/auth");
   }
-
+  function exitHandler() {
+    setAuthStatus(false);
+    localStorage.setItem("TOKEN", "");
+    localStorage.setItem("EXPIRE", "");
+    localStorage.setItem("AuthStatus", false);
+    localStorage.setItem("CompaniesUsed", "");
+    localStorage.setItem("CompaniesLimit", "");
+    console.log("Logging out...");
+    handleBurgerMenu();
+    navigation("/");
+  }
   return (
     <>
       <div
@@ -42,13 +54,15 @@ function BurgerMenu(props) {
           <Link to={"#"} className={styles.mobileRegister}>
             Зарегистрироваться
           </Link>
-          <button
-            onClick={enterHandler}
-            className={styles.mobileEnter}
-            to={"/auth"}
-          >
-            Войти
-          </button>
+          {authStatus === "false" ? (
+            <button onClick={enterHandler} className={styles.mobileEnter}>
+              Войти
+            </button>
+          ) : (
+            <button onClick={exitHandler} className={styles.mobileEnter}>
+              Выйти
+            </button>
+          )}
         </div>
       </div>
     </>

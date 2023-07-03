@@ -22,7 +22,11 @@ function App() {
       <Header isAuth={isAuth} setIsAuth={setIsAuth} />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/auth" element={<Auth isAuth={isAuth} setIsAuth={setIsAuth} />} />
+        <Route
+          path="/auth"
+          element={<Auth isAuth={isAuth} setIsAuth={setIsAuth} />}
+        />
+        {/* Если пользователь не авторизован то редиректит на форму авторизации, иначе есть доступ к поиску и результатам */}
         <Route element={isAuth ? <Outlet /> : <Navigate to="/auth" />}>
           <Route path='/search' element={<ResultProvider><SearchPage /></ResultProvider>} />
           <Route path='/result' element={<ResultProvider><ResultPage /></ResultProvider>} />
