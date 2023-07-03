@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./Header.module.css";
 import BurgerMenu from "../../components/BurgerMenu/BurgerMenu.jsx";
-import NavBar from "../NavBar/NavBar.jsx";
 import Logo from "../../assets/images/Logo-image.svg";
 import LogoInverted from "../../assets/images/Logo-image-inverted.svg";
 import Photo from "../../assets/images/Avatar4.jpg";
