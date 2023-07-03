@@ -2,7 +2,8 @@
   background: var(--main-color-3);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 19px 30px 35px 30px;
+  padding: 19px 30px 100px 30px;
+  position: relative;
 }
 
 .resultItem img {
@@ -41,25 +42,8 @@
   margin-top: 24px;
 }
 
-.cardCategory {
-  display: inline-block;
-
-  font-family: 'inter-regular';
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  color: #000000;
-  padding: 4px 13px;
-  border-radius: 5px;
-  background-color: var(--second-color-1);
-  margin-top: 14px;
-}
-
 .cardText {
   margin-top: 20px;
-}
-
-.cardText p {
   font-family: 'inter-regular';
 
   font-size: 16px;
@@ -71,9 +55,14 @@
 }
 
 .cardFooter {
+  position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: end;
+
+  bottom: 35px;
+  left: 30px;
+  right: 30px;
 }
 
 .wordCount {
@@ -109,7 +98,7 @@
 
 @media (max-width: 1140px) {
   .resultItem {
-    padding: 19px 24px;
+    padding: 19px 24px 100px 24px;
   }
   .date,
   .source {
@@ -145,7 +134,7 @@
     line-height: 17px;
     letter-spacing: 0.01em;
 
-    padding: 12px 28px;
+    padding: 12px 20px;
     border-radius: 5px;
   }
 

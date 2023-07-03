@@ -11,6 +11,7 @@ import { SearchPage } from "./pages/SearchPage";
 
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ResultProvider } from "./context/resultProvider";
 
 const fakeArr = [1, 2, 3, 4];
 
@@ -23,8 +24,8 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/auth" element={<Auth isAuth={isAuth} setIsAuth={setIsAuth} />} />
         <Route element={isAuth ? <Outlet /> : <Navigate to="/auth" />}>
-          <Route path='/search' element={<SearchPage />} />
-          <Route path='/result' element={<ResultPage data={fakeArr} />} />
+          <Route path='/search' element={<ResultProvider><SearchPage /></ResultProvider>} />
+          <Route path='/result' element={<ResultProvider><ResultPage /></ResultProvider>} />
         </Route>
         <Route path="/error" element={<AuthErrorPage />} />
       </Routes>
