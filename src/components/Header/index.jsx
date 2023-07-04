@@ -3,12 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./Header.module.css";
 import BurgerMenu from "../../components/BurgerMenu/BurgerMenu.jsx";
-import NavBar from "../NavBar/NavBar.jsx";
 import Logo from "../../assets/images/Logo-image.svg";
 import LogoInverted from "../../assets/images/Logo-image-inverted.svg";
 import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../../components/Loader/Loader.jsx";
 import { accountInfo } from "../../api/authService";
+import { authControl } from "../../utils/authControl.js";
+import { authReset } from "../../utils/exitAccount.js";
 
 function Header({ isAuth, setIsAuth }) {
   const [companiesUsed, setCompaniesUsed] = useState(
@@ -23,33 +24,21 @@ function Header({ isAuth, setIsAuth }) {
   const [token, setToken] = useState(localStorage.getItem("TOKEN"));
   const logoRef = useRef(null);
   const location = useLocation();
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setToken(localStorage.getItem("TOKEN"));
     setUserName(localStorage.getItem("User"));
-    authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
+    authControl(
+      localStorage.getItem("TOKEN"),
+      localStorage.getItem("EXPIRE"),
+      setIsAuth
+    );
     if (isAuth) {
       getInfoData(token);
-      console.log("Got account data...");
     }
     setUserName(localStorage.getItem("User"));
-  }, [isAuth, setIsAuth, location]);
-
-  function authControl(token, expireDate) {
-    if (token && expireDate) {
-      const now = new Date();
-      if (Date.parse(expireDate) > Date.parse(now)) {
-        localStorage.setItem("AuthStatus", true);
-        setIsAuth(true);
-      }
-    } else {
-      localStorage.setItem("AuthStatus", false);
-      setIsAuth(false);
-      localStorage.setItem("TOKEN", "");
-      localStorage.setItem("EXPIRE", "");
-    }
-  }
+  }, [isAuth, location]);
 
   async function getInfoData() {
     await accountInfo(token)
@@ -63,18 +52,11 @@ function Header({ isAuth, setIsAuth }) {
         console.log("Impossible to receive account data :", e);
       });
   }
-
-  function handleAuthDrop() {
-    localStorage.setItem("TOKEN", "");
-    localStorage.setItem("EXPIRE", "");
-    localStorage.setItem("AuthStatus", false);
-    localStorage.setItem("CompaniesUsed", "");
-    localStorage.setItem("CompaniesLimit", "");
-    console.log("Logging out...");
-    setIsAuth(false);
+  function handleAccountExit() {
+    authReset(setIsAuth, navigate);
   }
   function redirectMain() {
-    navigation("/");
+    navigate("/");
   }
   store.subscribe(() => {
     setMenuStatus(store.getState().menuStatus);
@@ -136,7 +118,7 @@ function Header({ isAuth, setIsAuth }) {
             <div className={styles.profile}>
               <div className={styles.name}>
                 <div>{userName}</div>
-                <button onClick={handleAuthDrop} className={styles.exit}>
+                <button onClick={handleAccountExit} className={styles.exit}>
                   Выйти
                 </button>
               </div>

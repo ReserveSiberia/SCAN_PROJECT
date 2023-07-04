@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./BurgerMenu.module.css";
 import NavBar from "../NavBar/NavBar.jsx";
+import { authReset } from "../../utils/exitAccount.js";
 
 function BurgerMenu(props) {
   const burgerRef = useRef(null);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
   const [authStatus, setAuthStatus] = useState(
     localStorage.getItem("AuthStatus")
@@ -18,19 +19,13 @@ function BurgerMenu(props) {
 
   function enterHandler() {
     handleBurgerMenu();
-    navigation("/auth");
+    navigate("/auth");
   }
   function exitHandler() {
-    setAuthStatus(false);
-    localStorage.setItem("TOKEN", "");
-    localStorage.setItem("EXPIRE", "");
-    localStorage.setItem("AuthStatus", false);
-    localStorage.setItem("CompaniesUsed", "");
-    localStorage.setItem("CompaniesLimit", "");
-    console.log("Logging out...");
+    authReset(setAuthStatus, navigate);
     handleBurgerMenu();
-    navigation("/");
   }
+
   return (
     <>
       <div

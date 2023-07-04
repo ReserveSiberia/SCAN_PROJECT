@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Characters from "../../assets/images/Characters.svg";
 import lock from "../../assets/images/lock.svg";
@@ -7,45 +7,28 @@ import facebook from "../../assets/images/facebook.svg";
 import yandex from "../../assets/images/yandex.svg";
 import { Button, Container } from "react-bootstrap";
 import styles from "./Auth.module.css";
-// import store from "../../store/store.js";
 import { logIn } from "../../api/authService";
+import { authCheck } from "../../utils/authControl";
 
 const Auth = ({ isAuth, setIsAuth }) => {
   const [userName, setUsersName] = useState(localStorage.getItem("User"));
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
-  function authControl(token, expireDate) {
-    if (token && expireDate) {
-      const now = new Date();
-      if (Date.parse(expireDate) > Date.parse(now)) {
-        localStorage.setItem("AuthStatus", true);
-        setIsAuth(true);
-        navigate("/");
-      }
-    } else {
-      localStorage.setItem("AuthStatus", false);
-      setIsAuth(false);
-      localStorage.setItem("TOKEN", "");
-      localStorage.setItem("EXPIRE", "");
-      localStorage.setItem("CompaniesUsed", "");
-      localStorage.setItem("CompaniesLimit", "");
-      navigate("/error");
-    }
-  }
 
   function handleAuth() {
     localStorage.setItem("User", userName);
     logIn(userName, password).then(() => {
-      return authControl(
+      return authCheck(
         localStorage.getItem("TOKEN"),
-        localStorage.getItem("EXPIRE")
+        localStorage.getItem("EXPIRE"),
+        setIsAuth,
+        navigate
       );
     });
-    // Cleaning input fields after submitting
     setUsersName("");
     setPassword("");
   }
+
   return (
     <main>
       <Container>
