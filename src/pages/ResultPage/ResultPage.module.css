@@ -70,12 +70,13 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 38px;
   margin-top: 58px;
+  position: relative;
 }
 
 .seeMoreBtn {
   display: block;
   margin: 0 auto;
-  margin-top: 38px;
+  margin-top: 60px;
 
   font-family: 'inter-medium';
   font-size: 22px;
@@ -91,6 +92,10 @@
 .seeMoreBtn:hover {
   background-color: var(--main-color-1);
   transition: background-color ease-in-out 0.2s;
+}
+
+.seeMoreBtnHidden {
+  display: none;
 }
 
 @media (max-width: 1140px) {
