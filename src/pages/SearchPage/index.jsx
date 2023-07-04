@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./SearchPage.module.css";
 import DocumentImage from "../../assets/images/SearchPageImg3.svg";
 import FolderImage from "../../assets/images/SearchPageImg2.svg";
@@ -6,6 +6,7 @@ import GroupImage from "../../assets/images/SearchPageImg1.svg";
 import { getGeneralData, getData, getDetailData } from "../../api/dataService";
 import { useNavigate } from "react-router-dom";
 import ResultContext from "../../context/createContext";
+import { validateInn } from "../../utils/validateInn";
 
 
 const SearchPage = () => {
@@ -17,7 +18,7 @@ const SearchPage = () => {
     completeness: false,
     businessContext: false,
     mainRole: false,
-    tonality: "",
+    tonality: "any",
     riskFactors: false,
     technicalNews: false,
     announcements: false,
@@ -26,6 +27,8 @@ const SearchPage = () => {
     startDate: "",
     endDate: "",
   });
+
+  const [validInnResult, setValidInnResult] = useState({})
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -41,14 +44,18 @@ const SearchPage = () => {
     context.setData(await getData(searchData))
   };
 
+  useEffect(() => {
+    setValidInnResult(validateInn(searchData.inn))
+  }, [searchData.inn])
+
   const isFormValid = () => {
     // Проверка на корректность введенных данных
     return (
-      searchData.inn.length > 0 &&
-      searchData.tonality.length > 0 &&
-      searchData.documentCount.length > 0 &&
+      validInnResult.errorStatus &&
+      (+searchData.documentCount > 0 && +searchData.documentCount <= 1000) &&
       searchData.startDate.length > 0 &&
-      searchData.endDate.length > 0
+      searchData.endDate.length > 0 &&
+      Date.parse(searchData.startDate) < Date.parse(searchData.endDate)
     );
   };
 
@@ -68,7 +75,7 @@ const SearchPage = () => {
             <div className={styles.column}>
               <div className={styles.left}>
                 <label htmlFor="inn" className={styles.left_label}>
-                  ИНН Компани*
+                  ИНН Компании <span className={styles.star}>*</span>
                 </label>
                 <input
                   type="text"
@@ -77,11 +84,15 @@ const SearchPage = () => {
                   value={searchData.inn}
                   onChange={handleInputChange}
                   required
-                  className={styles.left_input}
+                  className={
+                    !validInnResult.errorStatus && (searchData.inn.length !== 0) ?
+                      styles.errorInput :
+                      styles.left_input}
                   placeholder="10 цифр"
                 />
+                <span className={styles.error}>{validInnResult.errorElement}</span>
                 <label htmlFor="tonality" className={styles.label}>
-                  Тональность*
+                  Тональность
                 </label>
                 <select
                   id="tonality"
@@ -96,7 +107,7 @@ const SearchPage = () => {
                   <option value="negative">Негативная</option>
                 </select>
                 <label htmlFor="documentCount" className={styles.left_label}>
-                  Количество документов в выдаче*
+                  Количество документов в выдаче <span className={styles.star}>*</span>
                 </label>
                 <input
                   type="number"
@@ -105,10 +116,12 @@ const SearchPage = () => {
                   value={searchData.documentCount < 0 ? 0 : searchData.documentCount}
                   onChange={handleInputChange}
                   required
-                  className={styles.left_input}
+                  className={(searchData.documentCount > 1000) ?
+                    styles.errorInput :
+                    styles.left_input}
                   placeholder="1 до 1000"
                 />
-                <h1>Диапозон поиска*</h1>
+                <h1>Диапозон поиска <span className={styles.star}>*</span></h1>
                 <div className={styles.data}>
                   <label
                     className={styles.left_label}
