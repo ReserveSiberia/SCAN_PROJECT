@@ -8,37 +8,21 @@ import yandex from "../../assets/images/yandex.svg";
 import { Button, Container } from "react-bootstrap";
 import styles from "./Auth.module.css";
 import { logIn } from "../../api/authService";
+import { authCheck } from "../../utils/authControl";
 
 const Auth = ({ isAuth, setIsAuth }) => {
   const [userName, setUsersName] = useState(localStorage.getItem("User"));
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  function authControl(token, expireDate) {
-    if (token && expireDate) {
-      const now = new Date();
-      if (Date.parse(expireDate) > Date.parse(now)) {
-        localStorage.setItem("AuthStatus", true);
-        setIsAuth(true);
-        navigate("/");
-      }
-    } else {
-      localStorage.setItem("AuthStatus", false);
-      setIsAuth(false);
-      localStorage.setItem("TOKEN", "");
-      localStorage.setItem("EXPIRE", "");
-      localStorage.setItem("CompaniesUsed", "");
-      localStorage.setItem("CompaniesLimit", "");
-      navigate("/error");
-    }
-  }
-
   function handleAuth() {
     localStorage.setItem("User", userName);
     logIn(userName, password).then(() => {
-      return authControl(
+      return authCheck(
         localStorage.getItem("TOKEN"),
-        localStorage.getItem("EXPIRE")
+        localStorage.getItem("EXPIRE"),
+        setIsAuth,
+        navigate
       );
     });
     setUsersName("");
