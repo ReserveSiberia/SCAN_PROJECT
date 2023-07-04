@@ -6,6 +6,7 @@
   flex-direction: row;
   justify-content: space-between;
   overflow-x: hidden;
+  overflow-y: hidden;
   font-family: 'inter-regular';
   color: var(--main-color-3);
 }

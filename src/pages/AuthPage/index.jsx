@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Characters from "../../assets/images/Characters.svg";
 import lock from "../../assets/images/lock.svg";
@@ -9,26 +9,26 @@ import { Button, Container } from "react-bootstrap";
 import styles from "./Auth.module.css";
 import { logIn } from "../../api/authService";
 
-const Auth = () => {
+const Auth = ({ isAuth, setIsAuth }) => {
   const [userName, setUsersName] = useState(localStorage.getItem("User"));
   const [password, setPassword] = useState("");
-  const [isAuth, setIsAuth] = useState(false);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   function authControl(token, expireDate) {
     if (token && expireDate) {
       const now = new Date();
       if (Date.parse(expireDate) > Date.parse(now)) {
         localStorage.setItem("AuthStatus", true);
-        console.log("Access granted");
+        setIsAuth(true);
         navigate("/");
       }
     } else {
       localStorage.setItem("AuthStatus", false);
-      setIsAuth(localStorage.getItem("AuthStatus"));
+      setIsAuth(false);
       localStorage.setItem("TOKEN", "");
       localStorage.setItem("EXPIRE", "");
-      console.log("Access denied");
+      localStorage.setItem("CompaniesUsed", "");
+      localStorage.setItem("CompaniesLimit", "");
       navigate("/error");
     }
   }
@@ -49,7 +49,7 @@ const Auth = () => {
     <main>
       <Container>
         <div className={styles.displayForm}>
-          <div className={styles.Authorization}>
+          <div className={styles.Auth}>
             {isAuth === 2 ? (
               <h1>wrong data</h1>
             ) : (
@@ -142,7 +142,6 @@ const Auth = () => {
         </div>
       </Container>
     </main>
-
   );
 };
 

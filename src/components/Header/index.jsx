@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./Header.module.css";
 import BurgerMenu from "../../components/BurgerMenu/BurgerMenu.jsx";
@@ -10,8 +10,7 @@ import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../../components/Loader/Loader.jsx";
 import { accountInfo } from "../../api/authService";
 
-function Header() {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("AuthStatus"));
+function Header({ isAuth, setIsAuth }) {
   const [companiesUsed, setCompaniesUsed] = useState(
     localStorage.getItem("CompaniesUsed")
   );
@@ -19,21 +18,23 @@ function Header() {
     localStorage.getItem("CompaniesLimit")
   );
   const [userName, setUserName] = useState(localStorage.getItem("User"));
-  // temporary solution (photo goes from server url???)
   const [userAvatar, setUsersAvatar] = useState(Photo);
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
   const [token, setToken] = useState(localStorage.getItem("TOKEN"));
-  const [renderer, setRenderer] = useState(false);
   const logoRef = useRef(null);
   const location = useLocation();
+  const navigation = useNavigate();
 
   useEffect(() => {
-    authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
-    getInfoData(token);
+    setToken(localStorage.getItem("TOKEN"));
     setUserName(localStorage.getItem("User"));
-    setCompaniesUsed(localStorage.getItem("CompaniesUsed"));
-    setCompaniesLimit(localStorage.getItem("CompaniesLimit"));
-  }, [isAuth, userName, location]);
+    authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
+    if (isAuth) {
+      getInfoData(token);
+      console.log("Got account data...");
+    }
+    setUserName(localStorage.getItem("User"));
+  }, [isAuth, setIsAuth, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
@@ -41,14 +42,12 @@ function Header() {
       if (Date.parse(expireDate) > Date.parse(now)) {
         localStorage.setItem("AuthStatus", true);
         setIsAuth(true);
-        console.log("Access granted");
       }
     } else {
       localStorage.setItem("AuthStatus", false);
       setIsAuth(false);
       localStorage.setItem("TOKEN", "");
       localStorage.setItem("EXPIRE", "");
-      console.log("Access denied");
     }
   }
 
@@ -57,7 +56,8 @@ function Header() {
       .then((res) => {
         localStorage.setItem("CompaniesUsed", res.usedCompanyCount);
         localStorage.setItem("CompaniesLimit", res.companyLimit);
-        setRenderer(!renderer);
+        setCompaniesUsed(res.usedCompanyCount);
+        setCompaniesLimit(res.companyLimit);
       })
       .catch((e) => {
         console.log("Impossible to receive account data :", e);
@@ -68,9 +68,14 @@ function Header() {
     localStorage.setItem("TOKEN", "");
     localStorage.setItem("EXPIRE", "");
     localStorage.setItem("AuthStatus", false);
+    localStorage.setItem("CompaniesUsed", "");
+    localStorage.setItem("CompaniesLimit", "");
+    console.log("Logging out...");
     setIsAuth(false);
   }
-
+  function redirectMain() {
+    navigation("/");
+  }
   store.subscribe(() => {
     setMenuStatus(store.getState().menuStatus);
   });
@@ -78,17 +83,21 @@ function Header() {
   return (
     <>
       <header className={menuStatus ? styles.headerInverted : styles.header}>
-        <div className={styles.logo}>
+        <Link to={"/"} className={styles.logo}>
           <img
             ref={logoRef}
             className={styles.imgLogo}
             src={menuStatus ? LogoInverted : Logo}
             alt="Logo"
           ></img>
-        </div>
+        </Link>
         <div>
           <nav className={styles.nav}>
-            <NavBar />
+            <button onClick={redirectMain} className={styles.link}>
+              Главная
+            </button>
+            <button className={styles.link}>Тарифы</button>
+            <button className={styles.link}>FAQ</button>
           </nav>
         </div>
         {!isAuth ? (
@@ -108,7 +117,7 @@ function Header() {
           </div>
         ) : (
           <div className={styles.authData}>
-            {companiesUsed != null && companiesLimit != null ? (
+            {companiesLimit ? (
               <div
                 className={
                   menuStatus ? styles.requestsInfoHidden : styles.requestsInfo

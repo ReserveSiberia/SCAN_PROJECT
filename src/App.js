@@ -10,19 +10,26 @@ import { AuthErrorPage } from "./pages/AuthErrorPage";
 import { SearchPage } from "./pages/SearchPage";
 
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ResultProvider } from "./context/resultProvider";
 
 const fakeArr = [1, 2, 3, 4];
+
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
   return (
     <div className="App">
-      <Header />
+      <Header isAuth={isAuth} setIsAuth={setIsAuth} />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route
+          path="/auth"
+          element={<Auth isAuth={isAuth} setIsAuth={setIsAuth} />}
+        />
         {/* Если пользователь не авторизован то редиректит на форму авторизации, иначе есть доступ к поиску и результатам */}
-        <Route element={localStorage.getItem("AuthStatus") ? <Outlet /> : <Navigate to="/auth" />}>
-          <Route path='/search' element={<SearchPage />} />
-          <Route path='/result' element={<ResultPage data={fakeArr} />} />
+        <Route element={isAuth ? <Outlet /> : <Navigate to="/auth" />}>
+          <Route path='/search' element={<ResultProvider><SearchPage /></ResultProvider>} />
+          <Route path='/result' element={<ResultProvider><ResultPage /></ResultProvider>} />
         </Route>
         <Route path="/error" element={<AuthErrorPage />} />
       </Routes>

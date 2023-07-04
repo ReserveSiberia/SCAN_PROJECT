@@ -3,31 +3,54 @@ import { ResultItem } from '../../components/ResultItem'
 import { ResultSlider } from '../../components/ResultSlider'
 import ResultPageImg from '../../assets/images/ResultPageImg.svg'
 import { mapArrFunc } from '../../utils/mapArrFunc'
+import { useContext, useEffect, useState } from 'react'
+import ResultContext from '../../context/createContext'
+import { getDetailData } from '../../api/dataService'
+import { GeneralResultLoader } from '../../components/GeneralResultLoader'
 
-// Когда придут данные по запросу рендерим данный компонент и передаем в него данные.
-function ResultPage({ data }) {
-  const fakeArr = [
-    {
-      data: [{
-        date: "2020-11-01T03:00:00+03:00",
-        value: 0
-      }, {
-        date: "2020-06-01T03:00:00+03:00",
-        value: 1
-      }],
-      histogramType: "riskFactors"
-    },
-    {
-      data: [{
-        date: "2020-11-01T03:00:00+03:00",
-        value: 8
-      }, {
-        date: "2020-06-01T03:00:00+03:00",
-        value: 6
-      }],
-      histogramType: "totalDocuments"
-    },
-  ]
+function ResultPage() {
+  const context = useContext(ResultContext)
+  const [countDocs, setCountDocs] = useState(4)
+
+  const resultGeneralData = context.generalData
+  const resultData = context.data
+
+  const detailsData = context.detailsData
+  const setDetailsData = context.setDetailsData
+
+  useEffect(() => {
+    if (resultData && (+resultData.data.items.length) > 0) {
+      const arrForRequest = []
+
+      if ((+resultData.data.items.length) < countDocs) {
+        for (let i = 0; i < (+resultData.data.items.length); i++) {
+          arrForRequest.push(resultData.data.items[i].encodedId)
+        }
+      } else {
+        for (let i = 0; i < countDocs; i++) {
+          arrForRequest.push(resultData.data.items[i].encodedId)
+        }
+      }
+      const req = async () => {
+        setDetailsData(await getDetailData(arrForRequest))
+      }
+      req()
+    }
+  }, [resultData, countDocs])
+
+  const moreBtnHandler = () => {
+    const countDocsIterator = 4 // число на которое увеличивается количество записей
+    if ((countDocs + countDocsIterator) < (+resultData.data.items.length)) {
+      setCountDocs(countDocs + countDocsIterator)
+    }
+
+    const docsRest = (+resultData.data.items.length) - countDocs
+
+    if (docsRest < countDocsIterator) {
+      setCountDocs(countDocs + docsRest)
+    }
+  }
+
   return (
     <main className={styles.resultPage}>
       <div className={styles.soonResult}>
@@ -39,15 +62,25 @@ function ResultPage({ data }) {
       </div>
       <div className={styles.summaryBlock}>
         <h2 className={styles.subtitle}>Общая сводка</h2>
-        <p className={styles.dataSum}>Найдено {mapArrFunc(fakeArr).length} вариантов</p>
-        <ResultSlider data={fakeArr} />
+        <p className={styles.dataSum}>Найдено
+          {!resultGeneralData
+            ? ` 0`
+            : ` ${mapArrFunc(resultGeneralData.data.data).length}`} вариантов
+        </p>
+        {<ResultSlider isLoading={!resultGeneralData} data={!resultGeneralData
+          ? []
+          : resultGeneralData.data.data} />}
       </div>
       <div className={styles.resultBlock}>
         <h2 className={styles.subtitle}>Список документов</h2>
         <ul className={styles.resultList}>
-          {data ? data.map(item => <ResultItem data={[1, 2, 3, 4]} />) : <p>Результаты отсутствуют</p>}
+          {!resultData || +resultData.data.items.length === 0
+            ? <p></p>
+            : !detailsData
+              ? <GeneralResultLoader />
+              : detailsData.data.map(item => <ResultItem key={item.ok.id} data={item.ok} />)}
         </ul>
-        <button className={styles.seeMoreBtn}>Показать больше</button>
+        <button onClick={moreBtnHandler} className={resultData && ((countDocs) >= +resultData.data.items.length) ? styles.seeMoreBtnHidden : styles.seeMoreBtn}>Показать больше</button>
       </div>
     </main>
   )

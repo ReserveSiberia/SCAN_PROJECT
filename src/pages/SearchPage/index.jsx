@@ -1,37 +1,44 @@
-import React, { useState } from 'react';
-import styles from './SearchPage.module.css';
-import DocumentImage from '../../assets/images/SearchPageImg3.svg';
-import FolderImage from '../../assets/images/SearchPageImg2.svg';
-import GroupImage from '../../assets/images/SearchPageImg1.svg';
-import { getGeneralData, getData, getDetailData } from '../../api/dataService';
+import React, { useContext, useState } from "react";
+import styles from "./SearchPage.module.css";
+import DocumentImage from "../../assets/images/SearchPageImg3.svg";
+import FolderImage from "../../assets/images/SearchPageImg2.svg";
+import GroupImage from "../../assets/images/SearchPageImg1.svg";
+import { getGeneralData, getData, getDetailData } from "../../api/dataService";
+import { useNavigate } from "react-router-dom";
+import ResultContext from "../../context/createContext";
 
 
 const SearchPage = () => {
+  const navigate = useNavigate();
+  const context = useContext(ResultContext)
+
   const [searchData, setSearchData] = useState({
-    inn: '',
+    inn: "",
     completeness: false,
     businessContext: false,
     mainRole: false,
-    tonality: '',
+    tonality: "",
     riskFactors: false,
     technicalNews: false,
     announcements: false,
     newsDigests: false,
-    documentCount: '',
-    startDate: '',
-    endDate: '',
+    documentCount: "",
+    startDate: "",
+    endDate: "",
   });
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
     setSearchData({
       ...searchData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
-  const handleSearch = () => {
-    return console.log(getGeneralData(searchData), getData(searchData), getDetailData())
+  const handleSearch = async () => {
+    navigate('/result')
+    context.setGeneralData(await getGeneralData(searchData))
+    context.setData(await getData(searchData))
   };
 
   const isFormValid = () => {
@@ -42,21 +49,27 @@ const SearchPage = () => {
       searchData.documentCount.length > 0 &&
       searchData.startDate.length > 0 &&
       searchData.endDate.length > 0
-
     );
   };
 
   return (
+
     <main className={styles.searchPage}>
-      <div className={styles.conteiner}>
-        <h1 className={styles.title}>НАЙДИТЕ НЕОБХОДИМЫЕ
-          <p>ДАННЫЕ В ПАРУ КЛИКОВ.</p></h1>
-        <p className={styles.text}>Задайте параметры поиска. Чем больше заполните, тем точнее поиск</p>
-        <div className={styles.content}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>
+          НАЙДИТЕ НЕОБХОДИМЫЕ
+          <p>ДАННЫЕ В ПАРУ КЛИКОВ.</p>
+        </h1>
+        <p className={styles.text}>
+          Задайте параметры поиска. Чем больше заполните, тем точнее поиск
+        </p>
+        <div className={styles.searchContent}>
           <form className={styles.form}>
             <div className={styles.column}>
               <div className={styles.left}>
-                <label htmlFor="inn" className={styles.left_label}>ИНН Компани*</label>
+                <label htmlFor="inn" className={styles.left_label}>
+                  ИНН Компани*
+                </label>
                 <input
                   type="text"
                   id="inn"
@@ -67,7 +80,9 @@ const SearchPage = () => {
                   className={styles.left_input}
                   placeholder="10 цифр"
                 />
-                <label htmlFor="tonality" className={styles.label}>Тональность*</label>
+                <label htmlFor="tonality" className={styles.label}>
+                  Тональность*
+                </label>
                 <select
                   id="tonality"
                   name="tonality"
@@ -80,20 +95,24 @@ const SearchPage = () => {
                   <option value="positive">Позитивная</option>
                   <option value="negative">Негативная</option>
                 </select>
-                <label htmlFor="documentCount" className={styles.left_label}>Количество документов в выдаче*</label>
+                <label htmlFor="documentCount" className={styles.left_label}>
+                  Количество документов в выдаче*
+                </label>
                 <input
                   type="number"
                   id="documentCount"
                   name="documentCount"
-                  value={searchData.documentCount}
+                  value={searchData.documentCount < 0 ? 0 : searchData.documentCount}
                   onChange={handleInputChange}
                   required
                   className={styles.left_input}
                   placeholder="1 до 1000"
                 />
-                <span>Диапозон поиска*</span>
+                <h1>Диапозон поиска*</h1>
                 <div className={styles.data}>
-                  <label htmlFor="startDate" className={styles.left_label}></label>
+                  <label
+                    className={styles.left_label}
+                  ></label>
                   <input
                     placeholder="Дата начала"
                     type="date"
@@ -105,7 +124,7 @@ const SearchPage = () => {
                     className={styles.left_input}
                   />
                   <div className={styles.date_separator}></div>
-                  <label htmlFor="endDate" className={styles.left_label}></label>
+                  <label className={styles.left_label}></label>
                   <input
                     placeholder="Дата конца"
                     type="date"
@@ -130,7 +149,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                  <label htmlFor="completeness" className={styles.label}>Признак максимальной полноты</label>
+                  <label htmlFor="completeness" className={styles.label}>
+                    Признак максимальной полноты
+                  </label>
                 </div>
                 <div className={styles.checkbox}>
                   <input
@@ -141,7 +162,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                  <label htmlFor="businessContext" className={styles.label}>Упоминания в бизнес-контексте</label>
+                  <label htmlFor="businessContext" className={styles.label}>
+                    Упоминания в бизнес-контексте
+                  </label>
                 </div>
                 <div className={styles.checkbox}>
                   <input
@@ -152,7 +175,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                  <label htmlFor="mainRole" className={styles.label}>Главная роль в публикации</label>
+                  <label htmlFor="mainRole" className={styles.label}>
+                    Главная роль в публикации
+                  </label>
                 </div>
                 <div className={styles.checkbox}>
                   <input
@@ -163,7 +188,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                  <label htmlFor="riskFactorss" className={styles.label}>Публикации только с риск-факторами </label>
+                  <label htmlFor="riskFactors" className={styles.label}>
+                    В Публикации только c риск-факторами
+                  </label>
                 </div>
                 <div className={styles.checkbox}>
                   <input
@@ -174,7 +201,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                  <label htmlFor="technicalNews" className={styles.label}>Включать технические новости рынков</label>
+                  <label htmlFor="technicalNews" className={styles.label}>
+                    Включать технические новости рынков
+                  </label>
                 </div>
                 <div className={styles.checkbox}>
                   <input
@@ -185,7 +214,9 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                  <label htmlFor="announcements" className={styles.label}>Включать анонсы и календари</label>
+                  <label htmlFor="announcements" className={styles.label}>
+                    Включать анонсы и календари
+                  </label>
                 </div>
                 <div className={styles.checkbox}>
                   <input
@@ -196,9 +227,16 @@ const SearchPage = () => {
                     onChange={handleInputChange}
                     className={styles.checkbox}
                   />
-                  <label htmlFor="newsDigests" className={styles.label}>Включать сводки новостей</label>
+                  <label htmlFor="newsDigests" className={styles.label}>
+                    Включать сводки новостей
+                  </label>
                 </div>
-                <button type="button" onClick={handleSearch} disabled={!isFormValid()} className={styles.submitButton}>
+                <button
+                  type="button"
+                  onClick={handleSearch}
+                  disabled={!isFormValid()}
+                  className={styles.submitButton}
+                >
                   Поиск
                 </button>
                 <p className={styles.text2}>* Обязательные к заполнению поля</p>
@@ -206,15 +244,20 @@ const SearchPage = () => {
             </div>
           </form>
           <div className={styles.imageContainer}>
-            <img src={DocumentImage} alt="Search Page" className={styles.imageDoc} />
+            <img
+              src={DocumentImage}
+              alt="Search Page"
+              className={styles.imageDoc}
+            />
             <img src={FolderImage} alt="Search Page" className={styles.imageFol} />
             <img src={GroupImage} alt="Search Page" className={styles.imageGro} />
           </div>
         </div>
-
       </div>
 
     </main>
+
+
   );
 };
 

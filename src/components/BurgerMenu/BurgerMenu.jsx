@@ -1,18 +1,36 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./BurgerMenu.module.css";
 import NavBar from "../NavBar/NavBar.jsx";
 
 function BurgerMenu(props) {
   const burgerRef = useRef(null);
+  const navigation = useNavigate();
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
-
+  const [authStatus, setAuthStatus] = useState(
+    localStorage.getItem("AuthStatus")
+  );
   function handleBurgerMenu() {
     store.dispatch({ type: "CHANGE_MENU_STATUS" });
     setMenuStatus(!menuStatus);
   }
 
+  function enterHandler() {
+    handleBurgerMenu();
+    navigation("/auth");
+  }
+  function exitHandler() {
+    setAuthStatus(false);
+    localStorage.setItem("TOKEN", "");
+    localStorage.setItem("EXPIRE", "");
+    localStorage.setItem("AuthStatus", false);
+    localStorage.setItem("CompaniesUsed", "");
+    localStorage.setItem("CompaniesLimit", "");
+    console.log("Logging out...");
+    handleBurgerMenu();
+    navigation("/");
+  }
   return (
     <>
       <div
@@ -30,15 +48,21 @@ function BurgerMenu(props) {
         }
       >
         <nav className={styles.navMobile}>
-          <NavBar />
+          <NavBar handler={handleBurgerMenu} />
         </nav>
         <div className={styles.mobileAuth}>
           <Link to={"#"} className={styles.mobileRegister}>
             Зарегистрироваться
           </Link>
-          <Link className={styles.mobileEnter} to={"/auth"}>
-            Войти
-          </Link>
+          {authStatus === "false" ? (
+            <button onClick={enterHandler} className={styles.mobileEnter}>
+              Войти
+            </button>
+          ) : (
+            <button onClick={exitHandler} className={styles.mobileEnter}>
+              Выйти
+            </button>
+          )}
         </div>
       </div>
     </>
@@ -46,4 +70,3 @@ function BurgerMenu(props) {
 }
 
 export default BurgerMenu;
-

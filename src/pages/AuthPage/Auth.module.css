@@ -15,8 +15,9 @@
   font-weight: 900;
   font-size: 40px;
   line-height: 48px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.8px;
 }
+
 .Characters {
   display: flex;
   justify-content: center;
@@ -118,6 +119,7 @@
   margin: 20px auto;
   border-radius: 5px;
   border: 1px solid #c7c7c7;
+  padding: 0 10px;
 }
 
 .btnSubmit {
@@ -149,8 +151,6 @@
   margin: 15px;
 }
 
-/* @media (min-width: 993px) and (max-width: 1400px) {
-} */
 @media (min-width: 320px) and (max-width: 1250px) {
   .displayForm {
     display: flex;
@@ -162,15 +162,12 @@
     align-items: center;
   }
   .Auth {
-    margin-top: 0;
-    color: var(--main-color-2);
-    font-family: 'ferry';
+    max-width: 380px;
     font-style: normal;
-    font-weight: 900;
     font-size: 22px;
     line-height: 26px;
-    letter-spacing: 0.02em;
-  }
+   }
+
   .Characters {
     position: relative;
     width: 335px;
@@ -179,18 +176,12 @@
     bottom: -700px;
   }
   .loginForm {
-    position: relative;
-    box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
     width: 335px;
     height: 550px;
     padding: auto;
     top: -300px;
   }
   .form img.lock {
-    position: absolute;
-    width: 90px;
-    height: 75px;
     top: -60px;
     left: 60px;
   }
