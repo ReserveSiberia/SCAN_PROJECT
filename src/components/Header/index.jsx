@@ -30,10 +30,9 @@ function Header({ isAuth, setIsAuth }) {
     authControl(localStorage.getItem("TOKEN"), localStorage.getItem("EXPIRE"));
     if (isAuth) {
       getInfoData(token);
-      console.log("Got account data...");
     }
     setUserName(localStorage.getItem("User"));
-  }, [isAuth, setIsAuth, location]);
+  }, [isAuth, location]);
 
   function authControl(token, expireDate) {
     if (token && expireDate) {
@@ -69,8 +68,9 @@ function Header({ isAuth, setIsAuth }) {
     localStorage.setItem("AuthStatus", false);
     localStorage.setItem("CompaniesUsed", "");
     localStorage.setItem("CompaniesLimit", "");
-    console.log("Logging out...");
     setIsAuth(false);
+    console.log("Logged out...");
+    navigation("/");
   }
   function redirectMain() {
     navigation("/");

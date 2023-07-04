@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Characters from "../../assets/images/Characters.svg";
 import lock from "../../assets/images/lock.svg";
@@ -7,14 +7,13 @@ import facebook from "../../assets/images/facebook.svg";
 import yandex from "../../assets/images/yandex.svg";
 import { Button, Container } from "react-bootstrap";
 import styles from "./Auth.module.css";
-// import store from "../../store/store.js";
 import { logIn } from "../../api/authService";
 
 const Auth = ({ isAuth, setIsAuth }) => {
   const [userName, setUsersName] = useState(localStorage.getItem("User"));
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
+
   function authControl(token, expireDate) {
     if (token && expireDate) {
       const now = new Date();
@@ -42,10 +41,10 @@ const Auth = ({ isAuth, setIsAuth }) => {
         localStorage.getItem("EXPIRE")
       );
     });
-    // Cleaning input fields after submitting
     setUsersName("");
     setPassword("");
   }
+
   return (
     <main>
       <Container>

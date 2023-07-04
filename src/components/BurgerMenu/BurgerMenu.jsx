@@ -27,7 +27,7 @@ function BurgerMenu(props) {
     localStorage.setItem("AuthStatus", false);
     localStorage.setItem("CompaniesUsed", "");
     localStorage.setItem("CompaniesLimit", "");
-    console.log("Logging out...");
+    console.log("Logged out...");
     handleBurgerMenu();
     navigation("/");
   }
