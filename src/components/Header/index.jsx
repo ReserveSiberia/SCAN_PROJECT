@@ -9,7 +9,7 @@ import Photo from "../../assets/images/Avatar4.jpg";
 import Loader from "../../components/Loader/Loader.jsx";
 import { accountInfo } from "../../api/authService";
 import { authControl } from "../../utils/authControl.js";
-import { authReset } from "../../utils/exitAccount.js";
+import { authReset } from "../../utils/authReset.js";
 
 function Header({ isAuth, setIsAuth }) {
   const [companiesUsed, setCompaniesUsed] = useState(
@@ -52,12 +52,15 @@ function Header({ isAuth, setIsAuth }) {
         console.log("Impossible to receive account data :", e);
       });
   }
+
   function handleAccountExit() {
     authReset(setIsAuth, navigate);
   }
+
   function redirectMain() {
     navigate("/");
   }
+
   store.subscribe(() => {
     setMenuStatus(store.getState().menuStatus);
   });

@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
 import styles from "./BurgerMenu.module.css";
 import NavBar from "../NavBar/NavBar.jsx";
-import { authReset } from "../../utils/exitAccount.js";
+import { authReset } from "../../utils/authReset.js";
 
-function BurgerMenu(props) {
+function BurgerMenu() {
   const burgerRef = useRef(null);
   const navigate = useNavigate();
   const [menuStatus, setMenuStatus] = useState(store.getState().menuStatus);
@@ -21,6 +21,7 @@ function BurgerMenu(props) {
     handleBurgerMenu();
     navigate("/auth");
   }
+
   function exitHandler() {
     authReset(setAuthStatus, navigate);
     handleBurgerMenu();
