@@ -26,8 +26,22 @@ function App() {
         />
         {/* Страницы доступные только авторизованному пользователю */}
         <Route element={isAuth ? <Outlet /> : <Navigate to="/auth" />}>
-          <Route path='/search' element={<ResultProvider><SearchPage /></ResultProvider>} />
-          <Route path='/result' element={<ResultProvider><ResultPage /></ResultProvider>} />
+          <Route
+            path="/search"
+            element={
+              <ResultProvider>
+                <SearchPage />
+              </ResultProvider>
+            }
+          />
+          <Route
+            path="/result"
+            element={
+              <ResultProvider>
+                <ResultPage />
+              </ResultProvider>
+            }
+          />
         </Route>
         <Route path="/error" element={<AuthErrorPage />} />
       </Routes>

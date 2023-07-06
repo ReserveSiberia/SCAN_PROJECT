@@ -1,4 +1,5 @@
 import styles from "./MainCarouselCard.module.css";
+
 function MainCarouselCard(props) {
   return (
     <>

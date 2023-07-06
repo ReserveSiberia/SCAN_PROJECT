@@ -1,14 +1,15 @@
 import React from "react";
-// import { button } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { useNavigate } from "react-router-dom";
 
 function NavBar(props) {
   const navigation = useNavigate();
+
   function redirectMain() {
     props.handler();
     navigation("/");
   }
+
   return (
     <>
       <button onClick={redirectMain} className={styles.link}>
